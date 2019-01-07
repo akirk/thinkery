@@ -46,16 +46,15 @@ class Thinkery_Admin {
 	 */
 	public function register_admin_menu() {
 		$menu_title = __( 'Thinkery', 'thinkery' );
-		add_menu_page( 'thinkery', $menu_title, 'manage_options', 'thinkery-settings', null, 'dashicons-groups', 3.73 );
 		$page_type = sanitize_title( $menu_title );
-		add_submenu_page( 'thinkery-settings', __( 'Settings' ), __( 'Settings' ), 'manage_options', 'thinkery-settings', array( $this, 'render_admin_settings' ) );
+		add_submenu_page( 'edit.php?post_type=' . Thinkery_Things::CPT, __( 'Settings' ), __( 'Settings' ), 'manage_options', 'thinkery-settings', array( $this, 'render_admin_settings' ) );
 	}
 
 	/**
 	 * Check access for the Thinkery Admin settings page
 	 */
 	public function check_admin_settings() {
-		if ( ! current_user_can( Thinkery::REQUIRED_ROLE ) ) {
+		if ( ! current_user_can( 'administrator' ) ) {
 			wp_die( esc_html__( 'Sorry, you are not allowed to change the settings.', 'thinkery' ) );
 		}
 	}

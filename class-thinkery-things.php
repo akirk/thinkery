@@ -39,6 +39,7 @@ class Thinkery_Things {
 	private function register_hooks() {
 		add_filter( 'init', array( $this, 'register_custom_post_type' ) );
 		add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 10, 3 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( 'edit_form_before_permalink', array( $this, 'edit_form_before_permalink' ), 10, 3 );
 		add_action( 'post_row_actions', array( $this, 'post_row_actions' ), 10, 2 );
 		add_action( 'wp_ajax_thinkery_save_url', array( $this, 'ajax_save_url' ) );
@@ -48,8 +49,15 @@ class Thinkery_Things {
 	 * Registers the admin menus
 	 */
 	public function register_admin_menu() {
-		add_submenu_page( 'edit.php?post_type=' . self::CPT, __( 'Save URL', 'thinkery' ), __( 'Save url', 'thinkery' ), 'manage_options', 'thinkery-save-url', array( $this, 'render_save_url' ) );
+		add_submenu_page( 'edit.php?post_type=' . self::CPT, __( 'Save URL', 'thinkery' ), __( 'Save URL', 'thinkery' ), 'manage_options', 'thinkery-save-url', array( $this, 'render_save_url' ) );
 		add_action( 'load-thinkery_saved_page_thinkery-save-url', array( $this, 'process_admin_save_url' ) );
+	}
+
+	/**
+	 * Load the admin scripts
+	 */
+	public function admin_enqueue_scripts() {
+		wp_enqueue_style( 'thinkery-admin', plugins_url( 'css/admin.css', __FILE__ ) );
 	}
 
 	/**
@@ -69,7 +77,7 @@ class Thinkery_Things {
 			'not_found'          => __( 'No Things found', 'thinkery' ),
 			'not_found_in_trash' => __( 'No Things found in the Trash', 'thinkery' ),
 			'parent_item_colon'  => '',
-			'menu_name'          => _x( 'Things', 'taxonomy plural name', 'thinkery' ),
+			'menu_name'          => 'Thinkery',
 		);
 
 		$args = array(
@@ -83,8 +91,8 @@ class Thinkery_Things {
 			'show_in_rest'        => false,
 			'exclude_from_search' => false,
 			'public'              => false,
-			'menu_position'       => 6,
-			'menu_icon'           => 'dashicons-media-document',
+			'menu_position'       => 4,
+			'menu_icon'           => null,
 			'supports'            => array( 'title', 'editor', 'author' ),
 			'taxonomies'          => array( 'post_tag' ),
 			'has_archive'         => true,
