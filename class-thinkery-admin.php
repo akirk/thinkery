@@ -37,6 +37,7 @@ class Thinkery_Admin {
 	 */
 	private function register_hooks() {
 		add_action( 'admin_menu', array( $this, 'register_admin_menu' ) );
+		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( 'admin_bar_menu', array( $this, 'admin_bar_thinkery_menu' ), 39 );
 		add_action( 'tool_box', array( $this, 'toolbox_bookmarklets' ) );
 	}
@@ -45,9 +46,16 @@ class Thinkery_Admin {
 	 * Registers the admin menus
 	 */
 	public function register_admin_menu() {
-		$menu_title = __( 'Thinkery', 'thinkery' );
-		$page_type = sanitize_title( $menu_title );
+		add_submenu_page( 'edit.php?post_type=' . Thinkery_Things::CPT, __( 'Save URL', 'thinkery' ), __( 'Save URL', 'thinkery' ), 'manage_options', 'thinkery-save-url', array( $this, 'render_save_url' ) );
+		add_action( 'load-thinkery_thing_page_thinkery-save-url', array( $this, 'process_admin_save_url' ) );
 		add_submenu_page( 'edit.php?post_type=' . Thinkery_Things::CPT, __( 'Settings' ), __( 'Settings' ), 'manage_options', 'thinkery-settings', array( $this, 'render_admin_settings' ) );
+	}
+
+	/**
+	 * Load the admin scripts
+	 */
+	public function admin_enqueue_scripts() {
+		wp_enqueue_style( 'thinkery', plugins_url( 'thinkery.css', __FILE__ ) );
 	}
 
 	/**
@@ -106,6 +114,52 @@ class Thinkery_Admin {
 	}
 
 	/**
+	 * Save the saved_url
+	 */
+	function process_admin_save_url() {
+		$error = false;
+
+		if ( ! empty( $_POST ) && wp_verify_nonce( $_POST['_wpnonce'], 'save-url' ) ) {
+			return $this->thinkery->things->save_url( $_POST['url'] );
+		}
+
+		if ( isset( $_GET['error'] ) ) {
+			switch ( $_GET['error'] ) {
+				case 'invalid-url':
+					return new WP_Error( $_GET['error'], __( 'You entered an invalid URL.', 'thinkery' ) );
+				case 'invalid-content':
+					return new WP_Error( $_GET['error'], __( 'No content was extracted.', 'thinkery' ) );
+				case 'could-not-download':
+					return new WP_Error( $_GET['error'], __( 'Could not download the URL.', 'thinkery' ) );
+				default:
+					return new WP_Error( $_GET['error'], $_GET['error'] );
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Save the saved_url through the UI
+	 */
+	function render_save_url() {
+		$error = $this->process_admin_save_url();
+		?>
+		<h1><?php esc_html_e( 'Save URL', 'thinkery' ); ?></h1>
+		<?php
+		if ( is_wp_error( $error ) ) {
+			?>
+			<div id="message" class="updated error is-dismissible"><p><?php echo esc_html( $error->get_error_message() ); ?></p></div>
+			<?php
+		}
+
+		if ( ! empty( $_GET['url'] ) ) {
+			$url = $_GET['url'];
+		}
+
+		include apply_filters( 'thinkery_template_path', 'admin/save-url.php' );
+	}
+
+	/**
 	 * Add a Thinkery menu to the admin bar
 	 *
 	 * @param  WP_Admin_Bar $wp_menu The admin bar to modify.
@@ -119,7 +173,7 @@ class Thinkery_Admin {
 				array(
 					'id'     => 'thinkery',
 					'parent' => '',
-					'title'  => '<span class="ab-icon dashicons dashicons-groups"></span> ' . esc_html( $thinkery_title ),
+					'title'  => '<span class="ab-icon thinkery"></span> ' . esc_html( $thinkery_title ),
 					'href'   => $thinkery_url,
 				)
 			);

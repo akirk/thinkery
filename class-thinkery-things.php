@@ -38,26 +38,9 @@ class Thinkery_Things {
 	 */
 	private function register_hooks() {
 		add_filter( 'init', array( $this, 'register_custom_post_type' ) );
-		add_action( 'admin_menu', array( $this, 'register_admin_menu' ), 10, 3 );
-		add_action( 'admin_enqueue_scripts', array( $this, 'admin_enqueue_scripts' ) );
 		add_action( 'edit_form_before_permalink', array( $this, 'edit_form_before_permalink' ), 10, 3 );
 		add_action( 'post_row_actions', array( $this, 'post_row_actions' ), 10, 2 );
 		add_action( 'wp_ajax_thinkery_save_url', array( $this, 'ajax_save_url' ) );
-	}
-
-	/**
-	 * Registers the admin menus
-	 */
-	public function register_admin_menu() {
-		add_submenu_page( 'edit.php?post_type=' . self::CPT, __( 'Save URL', 'thinkery' ), __( 'Save URL', 'thinkery' ), 'manage_options', 'thinkery-save-url', array( $this, 'render_save_url' ) );
-		add_action( 'load-thinkery_saved_page_thinkery-save-url', array( $this, 'process_admin_save_url' ) );
-	}
-
-	/**
-	 * Load the admin scripts
-	 */
-	public function admin_enqueue_scripts() {
-		wp_enqueue_style( 'thinkery-admin', plugins_url( 'css/admin.css', __FILE__ ) );
 	}
 
 	/**
@@ -111,52 +94,6 @@ class Thinkery_Things {
 
 		$error = $this->save_url( $_GET['url'] );
 		wp_safe_redirect( add_query_arg( 'error', $error->get_error_code(), self_admin_url( 'admin.php?page=thinkery-save-url&url=' . esc_url( $_GET['url'] ) ) ) );
-	}
-
-	/**
-	 * Save the saved_url
-	 */
-	function process_admin_save_url() {
-		$error = false;
-
-		if ( ! empty( $_POST ) && wp_verify_nonce( $_POST['_wpnonce'], 'save-url' ) ) {
-			return $this->save_url( $_POST['url'] );
-		}
-
-		if ( isset( $_GET['error'] ) ) {
-			switch ( $_GET['error'] ) {
-				case 'invalid-url':
-					return new WP_Error( $_GET['error'], __( 'You entered an invalid URL.', 'thinkery' ) );
-				case 'invalid-content':
-					return new WP_Error( $_GET['error'], __( 'No content was extracted.', 'thinkery' ) );
-				case 'could-not-download':
-					return new WP_Error( $_GET['error'], __( 'Could not download the URL.', 'thinkery' ) );
-				default:
-					return new WP_Error( $_GET['error'], $_GET['error'] );
-			}
-		}
-		return false;
-	}
-
-	/**
-	 * Save the saved_url through the UI
-	 */
-	function render_save_url() {
-		$error = $this->process_admin_save_url();
-		?>
-		<h1><?php esc_html_e( 'Save url', 'thinkery' ); ?></h1>
-		<?php
-		if ( is_wp_error( $error ) ) {
-			?>
-			<div id="message" class="updated error is-dismissible"><p><?php echo esc_html( $error->get_error_message() ); ?></p></div>
-			<?php
-		}
-
-		if ( ! empty( $_GET['url'] ) ) {
-			$url = $_GET['url'];
-		}
-
-		include apply_filters( 'thinkery_template_path', 'admin/save-url.php' );
 	}
 
 	/**

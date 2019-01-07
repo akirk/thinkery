@@ -6,7 +6,8 @@
 	font-style: normal;
 }
 
-#menu-posts-thinkery_thing div.wp-menu-image:before {
+#menu-posts-thinkery_thing div.wp-menu-image:before,
+#wp-admin-bar-thinkery span.ab-icon.thinkery:before {
 	font-family: thinkery !important;
 	content: "\e600";
 }

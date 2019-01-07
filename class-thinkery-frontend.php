@@ -96,7 +96,6 @@ class Thinkery_Frontend {
 			wp_enqueue_script( 'thinkery', plugins_url( 'thinkery.js', __FILE__ ), array( 'jquery' ) );
 			wp_enqueue_style( 'thinkery', plugins_url( 'thinkery.css', __FILE__ ) );
 			$variables = array(
-				'emojis_json' => plugins_url( 'emojis.json', __FILE__ ),
 				'ajax_url'    => admin_url( 'admin-ajax.php' ),
 				'spinner_url' => admin_url( 'images/wpspin_light.gif' ),
 				'text_undo'   => __( 'Undo' ),
