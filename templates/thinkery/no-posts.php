@@ -14,5 +14,5 @@
 	?>
 	</h1>
 
-	<p><?php _e( "Your thinkery haven't posted anything yet!", 'thinkery' ); ?></p>
+	<p><?php _e( "Your thinkery doesn't contain anything yet!", 'thinkery' ); ?></p>
 <?php get_footer(); ?>

@@ -11,3 +11,13 @@
 	font-family: thinkery !important;
 	content: "\e600";
 }
+
+.thinkery-page {
+	background-color: #fff;
+	color: #333;
+}
+
+.thinkery-page button {
+	background-color: #fff;
+	color: #333;
+}
