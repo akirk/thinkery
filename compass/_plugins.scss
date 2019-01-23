@@ -1,0 +1,40 @@
+#commandlinefufly {
+	clear: left;
+	color: #04b100;
+}
+#commandlinefufly .commandlinefluitem {
+	margin-top: 6px;
+}
+#commandlinefufly .commandlinefluitem .command {
+	zoom:1;
+	font-family:"Droid Sans Mono",monospace;
+	font-size:11pt;
+	color:#04b100;
+	padding-left: 1.25em;
+	background: transparent url(../img/prompt.png) no-repeat top left;
+	line-height:1;
+}
+#commandlinefufly .commandlinefluitem .command a {
+	color: #04b100;
+}
+#commandlinefufly .commandlinefluitem .details {
+	padding: .5em 0;
+	zoom:1;
+	color: #666;
+	text-decoration:none;
+}
+#gistcode .code .smallLink {
+	display: block;
+	font-size: smaller;
+	margin-bottom: 0.5em;
+}
+
+#gistcode .code {
+	border-bottom: 1px dotted #DDDDDD;
+	margin-bottom: 0.5em;
+	margin-top: 1em;
+	padding-bottom: 2em;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-top: 0;
+}

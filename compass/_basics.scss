@@ -1,0 +1,189 @@
+body {
+	overflow: auto;
+}
+.active, .active a {
+	color: #6b6b6b;
+	font-weight: bold;
+}
+
+p { margin: 0 0 0.75em 0; }
+
+hgroup {
+	margin-bottom: 4%;
+}
+
+h1, .h1 {
+	font-size: 145%;
+	line-height: 120%;
+	margin: 0 0 1em 0;
+}
+
+
+h1.border {
+	padding: 0 0 .5em 0;
+	border-bottom: 1px solid $br_grey;
+}
+
+.dottedborder {
+	border-bottom: 1px dotted $br_grey;
+}
+
+h6.dottedborder {
+	padding: 0 0 .25em 0;
+}
+
+h3 {
+	color: #777f82;
+	font-weight: normal;
+	font-size: 135%;
+	margin: 2em 0 1.25em 0;
+}
+
+h3:first-child, h4:first-child {
+	margin-top: 0;
+}
+
+h4 {
+	font-size: 120%;
+	margin: 2em 0 1.25em 0;
+}
+
+h6 {
+	margin: 0 0 1em 0;
+}
+
+.icn {
+	padding-left: 1.3em;
+	cursor: pointer;
+}
+
+.modalbox { display: none; }
+
+table {
+	margin: 0 0 1.5em 0;
+}
+
+table tbody td, table thead td, table thead th {
+	padding: 0.75em;
+}
+
+table thead {
+	font-weight: bold;
+	background: #f3f3f3;
+}
+
+table td {
+	border-bottom: 1px solid #efefef;
+}
+
+table tr.noborder td {
+	border-bottom: 0;
+}
+
+div#error {
+	background: url(../img/error.png) no-repeat;
+	height: 15em;
+	width: 15em;
+}
+
+
+/**
+ * Forms, Fields, Labels
+**/
+
+.content.edit input, #login input, #register input, #contact input, .content.edit textarea, #contact textarea, #delete-account input, #upload input, textarea, input {
+	border: 1px solid transparent;
+	border-bottom: 1px solid #ddd;
+	background: #fff;
+	padding: 0.5em 0.25em 0.5em 0.5em;
+	margin: 0 0 1em 0;
+	width: 85%;
+}
+input[type="radio"], input[type="checkbox"] {
+	width: auto;
+	vertical-align: middle;
+}
+
+label {
+	margin: 0 0.5em 0.5em 0;
+	font-weight: normal;
+	color: #666;
+	display: block;
+}
+
+label h5 {
+	display: inline-block;
+	margin: -1em 0 .5em .5em;
+}
+
+label h5 + p {
+	padding-left: 1.75em;
+	margin-bottom: 1.5em;
+	color: #888;
+}
+
+label input[type="checkbox"] {
+	vertical-align: top;
+}
+
+form div.loading img {
+	display: none;
+}
+
+form .error .status, form .ok .status, #status.error, #status.ok {
+	padding: .5em;
+	width: 85%;
+	font-size: smaller;
+	margin: -1.2em 0 2em 0;
+}
+
+form .error div, #status.error {
+	background: #fae3e3;
+}
+form .ok div, #status.ok {
+	background: #e0f7c9;
+}
+
+textarea#contactMessage {
+	height: 10em;
+}
+
+textarea.cpbookmarklet {
+	height: 5.5em;
+	width: 100%;
+}
+
+input:hover, #login input:hover, #register input:hover, #search-input:hover, #delete-account input:hover, #upload input:hover, textarea:hover {
+	border: 1px solid #bbb;
+	-webkit-transition: border 250ms linear;
+	-moz-transition: border 250ms linear;
+	-o-transition: border 250ms linear;
+	transition: border 250ms linear;
+}
+
+#message.ok {
+	padding-right: .75em;
+	background: #e6f7cc;
+}
+
+#status {
+	margin-bottom: 1em;
+}
+
+section#error h1.error, h1.error {
+	margin-top: 1.5em;
+}
+
+ol li {
+	margin: 0 0 0.75em 0;
+	padding: 0;
+}
+
+section#flyout .content .thing-details ol, section#flyout .content .thing-details ul {
+	margin-top: 0.75em;
+	margin-bottom: 0.5em;
+}
+
+section#flyout .content .thing-details ol li, section#flyout .content .thing-details ul li {
+	margin-bottom: 0.5em;
+}

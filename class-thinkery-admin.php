@@ -189,9 +189,9 @@ class Thinkery_Admin {
 		<div class="card">
 			<h2 class="title"><?php _e( 'Thinkery', 'thinkery' ); ?></h2>
 
-			<p><?php _e( "Drag the bookmarklets to your bookmarks bar and click it when you're on a site around the web for the appropriate action.", 'thinkery' ); ?></p>
+			<p><?php _e( "Drag this bookmarklet to your bookmarks bar and click it when you're on a site around the web that you want to save.", 'thinkery' ); ?></p>
 			<p>
-				<a onclick="alert( '<?php echo esc_attr( __( 'Please drag this to your bookmarks bar.', 'thinkery' ) ); ?>' );return false" href="javascript:void(location.href='<?php echo esc_attr( self_admin_url( 'admin-ajax.php?action=thinkery_save_url&url=' ) ); ?>'+encodeURIComponent(location.href))" style="display: inline-block; padding: .5em; border: 1px solid #999; border-radius: 4px; background-color: #ddd; text-decoration: none; margin-right: 3em"><?php echo esc_html_e( 'Save Article', 'thinkery' ); ?></a>
+				<a href="javascript:void(location.href='<?php echo esc_attr( self_admin_url( 'admin-ajax.php?action=thinkery_save_url&url=' ) ); ?>'+encodeURIComponent(location.href))" style="display: inline-block; padding: .5em; border: 1px solid #999; border-radius: 4px; background-color: #ddd; text-decoration: none; margin-right: 3em"><?php echo esc_html_e( 'Save URL', 'thinkery' ); ?></a>
 			</p>
 			</div>
 		</div>

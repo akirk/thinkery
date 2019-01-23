@@ -1,0 +1,398 @@
+@import "colors.scss";
+
+/* Frontpage */
+
+header, nav#menu, section#things, section#static, section#flyout {
+	position: absolute;
+}
+
+body#home header {
+	background: #e4eef2 url(../img/thinkery-infographic.png) no-repeat bottom right;
+	background-position-x: 90%;
+	height: 38em;
+	position: relative;
+	padding-top: .5em;
+	/*box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);*/
+}
+
+body#home #logo {
+	margin-top: -1em;
+	padding-left: 3%;
+}
+
+body#home #topbar {
+	background: #e4eef2;
+	margin-top: 1%;
+}
+
+h1 {
+	font-weight: normal;
+	font-size: 380%;
+	color: #222;
+	margin-bottom: .2em;
+}
+
+h2 {
+	color: #4d717d;
+	font-size: 135%;
+	font-weight: normal;
+	line-height: 135%;
+}
+
+h5 {
+	font-size: 115%;
+}
+
+section#static {
+	border-right: 0 !important;
+	width: 51%;
+	left: 21%;
+}
+
+section#things, section#static {
+	border-left: 1px solid #ddd;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	border-top: none;
+}
+
+section#flyout {
+	border-top: 0;
+	overflow: auto;
+	bottom: 0;
+	height: 100%;
+}
+
+body#home {
+	nav#menu, section#things, section#flyout {
+		top: 39em;
+	}
+	ul.features li {
+		background: url(../img/about_features_checkbox.png) no-repeat 0 4px;
+		padding-left: 1.1em;
+	}
+	#search {
+		top: 13.75em;
+		left: 3%;
+		width: 45%;
+	}
+
+	#search hgroup {
+		margin-left: 0;
+		margin-bottom: 3%;
+	}
+
+	#search-input {
+		margin-top: 3em;
+		opacity: .8;
+	}
+
+	#search-input:hover, #search-input:focus {
+		opacity: 1;
+	}
+
+	#message {
+		position: relative;
+		background: 0;
+		width: auto;
+		padding-left: .5em;
+
+		ul {
+			margin: 4em 0 0 1.4em;
+
+			li {
+				color: #005e81;
+			}
+		}
+	}
+	nav#user {
+		position: absolute;
+		right: 3%;
+
+		/* Topbar Navigation */
+
+		ul {
+			li.dir {
+				border-right: 0;
+				padding-top: 0.6em;
+			}
+
+			.register, .login, .tryout {
+				border: 1px solid #c3d3d9;
+				padding: .5em;
+				background: none;
+				text-shadow: none;
+				text-align: left;
+				font: inherit;
+				box-shadow: none;
+				border-radius: 0;
+				color: #17a6d5;
+			}
+
+			.register:hover, .login:hover, .tryout:hover {
+				background: #6bbed9;
+				color: #fff;
+			}
+
+			li.feedback {
+				display: none;
+			}
+
+			.login {
+				margin-right: -1.05em;
+			}
+		}
+	}
+	nav#menu {
+		padding-left: 3%;
+
+		ul li {
+			margin: 0 0 .5em 0;
+			padding: 0 0 0.5em 0;
+			border-bottom: 1px dotted #ddd;
+		}
+
+		width: 16%;
+	}
+
+	section#things {
+		width: 51%;
+		left: 21%;
+	}
+
+	section#flyout {
+		left: 73%;
+		width: 25%;
+		position: relative;
+	}
+
+	section#things {
+		overflow: visible !important;
+	}
+
+	section.signup {
+		padding-top: 7em;
+		padding-bottom: 5em;
+		background: #e4eef2;
+		margin-bottom: 0;
+		text-align: center;
+	}
+
+	section.signup a.register {
+		font-size: 24px;
+		padding: .75em;
+	}
+
+	a.register {
+		padding: .65em;
+		font-size: 20px;
+	}
+
+	.content {
+		margin: 0 3% 0 4%;
+		height: auto;
+		padding-bottom: 5em;
+	}
+
+	section {
+		padding: 1% 3%;
+		margin: 3em 0 5em 0;
+	}
+
+	section#press {
+		padding: 2% 3% 1% 3%;
+		background: #fafafa;
+		margin: 0;
+	}
+
+	section#press .yui3-u-1-4 {
+		text-align: center;
+	}
+
+	section#press p {
+		color: #777;
+	}
+
+	.press-quote {
+		color: #999;
+		font-size: 140%;
+		font-family: Georgia, serif;
+		line-height: 0;
+	}
+
+	section h2 {
+		font-size: 285%;
+	}
+
+	h6.big, h4.big {
+		font-size: 130%;
+		font-weight: bold;
+		margin: 1em 0 .5em 0;
+		color: #666;
+	}
+
+	h3 {
+		margin: 1em 0 3em 0;
+		line-height: 130%;
+	}
+
+	p {
+		width: 84%;
+	}
+
+	#features img {
+		width: 84%;
+		border: 1px solid #ddd;
+		margin-top: 2em;
+	}
+
+	footer {
+		position: relative;
+	}
+
+	#search sub.message.grey {
+		display: none;
+	}
+
+	.author {
+		font-style: italic;
+		color: #999;
+	}
+
+}
+body#static {
+	.content {
+		margin: 0 3% 0 4%;
+		height: auto;
+		padding-bottom: 5em;
+	}
+	nav#menu, section#things, section#flyout {
+		top: 13em;
+	}
+
+	section#static {
+		border-left: 0;
+		.content {
+			margin-left: 0.55%;
+		}
+	}
+
+	h1 {
+		color: #777f82;
+		font-weight: normal;
+		font-size: 220%;
+		line-height: 120%;
+		margin: 1em 0 1em 0;
+	}
+
+	section ul li {
+		margin: 0 0 .75em 0;
+		border: 0;
+		padding: 0;
+	}
+}
+
+div.top {
+	margin: 0;
+	position: relative;
+	width: 100%;
+	height: 200px;
+	overflow: hidden;
+	float: left;
+	border-top: 1px solid #cce2eb;
+	border-bottom: 1px solid #cce2eb;
+	cursor: help;
+
+	div {
+		width: 100%;
+		height: 200px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		text-align: center;
+		background: #edf5f7;
+		-webkit-transition: top .5s ease-in-out;
+		font-size: 115%;
+		line-height: 120%;
+	}
+
+	div.first {
+		z-index: 1000;
+		font-size: 130%;
+		line-height: 120%;
+		background: #edf5f7;
+		height: 200px;
+		.inner {
+			position: absolute;
+			text-align: center;
+			padding: 0 15px;
+			width: 85%;
+			top: 30%;
+			margin: auto 0;
+		}
+	}
+
+	div.second {
+		@extend div.first;
+		top: 200px;
+		border: 0;
+
+		.inner {
+			position: absolute;
+			text-align: left;
+			padding: 0 15px;
+			width: 85%;
+			top: 15%;
+			margin: auto 0;
+		}
+	}
+
+}
+
+@media screen and (max-width: 767px) {
+
+	body#home {
+		header {
+			background: #e4eef2;
+			height: 24em;
+		}
+
+		section#things {
+			width: 100%;
+			left: 0;
+		}
+
+		.img_thinkery img {
+			width: 100%;
+		}
+
+		#search {
+			left: 2%;
+			width: 96%;
+			top: 8.75em;
+		}
+
+		#topbar {
+			margin-bottom: 1em;
+		}
+
+		#logo {
+			float: none;
+			text-align: center;
+			width: 100%;
+		}
+
+		#logo a {
+			margin: 0 1%;
+		}
+
+		h1 {
+			font-size: 200%;
+		}
+	}
+	body#static section#things {
+		width: 100%;
+		left: 0;
+	}
+}

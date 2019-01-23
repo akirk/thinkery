@@ -1,0 +1,194 @@
+.redactor_editor,.redactor_editor:focus {
+	border: 1px solid transparent;
+	padding: 20px 10px 20px 6px;
+}
+
+.redactor_box {
+	border: 1px solid transparent;
+}
+
+.redactor_box .redactor_toolbar {
+	// box-shadow: auto !important;
+	background: #fff;
+	border-bottom: 1px solid #ddd;
+}
+
+body .redactor_box_fullscreen {
+    overflow: visible;
+}
+
+
+// delete all these bad styles from redactor.scss as overriding doesn't work
+
+// .redactor_editor div,
+// .redactor_editor p,
+// .redactor_editor ul,
+// .redactor_editor ol,
+// .redactor_editor table,
+// .redactor_editor dl,
+// .redactor_editor blockquote,
+// .redactor_editor pre,
+// .redactor_editor h1,
+// .redactor_editor h2,
+// .redactor_editor h3,
+// .redactor_editor h4,
+// .redactor_editor h5,
+// .redactor_editor h6 {
+//   font-family: inherit !important;
+// }
+// .redactor_editor code,
+// .redactor_editor pre {
+//   font-family: inherit !important;
+// }
+// .redactor_editor div,
+// .redactor_editor p,
+// .redactor_editor ul,
+// .redactor_editor ol,
+// .redactor_editor table,
+// .redactor_editor dl,
+// .redactor_editor blockquote,
+// .redactor_editor pre {
+//   font-size: 100% !important;
+//   line-height: auto !important;
+// }
+// .redactor_editor a {
+//   color: auto !important;
+//   text-decoration: auto !important;
+// }
+// .redactor_editor .redactor_placeholder {
+//   color: auto !important;
+//   display: auto !important;
+// }
+// /*
+//   TYPOGRAPHY
+// */
+// .redactor_editor object,
+// .redactor_editor embed,
+// .redactor_editor video,
+// .redactor_editor img {
+//   max-width: auto !important;
+//   width: auto !important;
+// }
+// .redactor_editor video,
+// .redactor_editor img {
+//   height: auto !important;
+// }
+// .redactor_editor div,
+// .redactor_editor p,
+// .redactor_editor ul,
+// .redactor_editor ol,
+// .redactor_editor table,
+// .redactor_editor dl,
+// .redactor_editor blockquote,
+// .redactor_editor pre {
+//   margin: auto !important;
+//   margin-bottom: auto !important;
+//   border: none !important;
+//   background: auto !important;
+//   box-shadow: auto !important;
+// }
+// .redactor_editor iframe,
+// .redactor_editor object,
+// .redactor_editor hr {
+//   margin-bottom: auto !important;
+// }
+// .redactor_editor blockquote {
+//   margin-left: auto !important;
+//   padding-left: auto !important;
+//   color: auto !important;
+//   font-style: auto !important;
+// }
+// .redactor_editor ul,
+// .redactor_editor ol {
+//   padding-left: auto !important;
+// }
+// .redactor_editor ul ul,
+// .redactor_editor ol ol,
+// .redactor_editor ul ol,
+// .redactor_editor ol ul {
+//   margin: auto !important;
+//   padding: auto !important;
+//   padding-left: auto !important;
+//   border: none !important;
+// }
+// .redactor_editor dl dt {
+//   font-weight: auto !important;
+// }
+// .redactor_editor dd {
+//   margin-left: auto !important;
+// }
+// .redactor_editor table {
+//   border-collapse: auto !important;
+//   font-size: 100% !important;
+// }
+// .redactor_editor table td {
+//   padding: auto !important;
+//   border: none !important;
+//   vertical-align: auto !important;
+// }
+// .redactor_editor table thead td {
+//   border-bottom: auto !important;
+//   font-weight: auto !important;
+// }
+// .redactor_editor code {
+//   background-color: auto !important;
+// }
+// .redactor_editor pre {
+//   overflow: auto !important;
+//   padding: auto !important;
+//   border: none !important;
+//   border-radius: auto !important;
+//   background: auto !important;
+//   white-space: auto !important;
+//   font-size: 100% !important;
+// }
+// .redactor_editor hr {
+//   display: auto !important;
+//   height: auto !important;
+//   border: none !important;
+//   border-top: auto !important;
+// }
+
+// .redactor_editor h1,
+// .redactor_editor h2,
+// .redactor_editor h3,
+// .redactor_editor h4,
+// .redactor_editor h5,
+// .redactor_editor h6 {
+//   margin-top: auto !important;
+//   padding: auto !important;
+//   background: auto !important;
+//   color: auto !important;
+//   font-weight: auto !important;
+// }
+// .redactor_editor h1 {
+//   font-size: 100% !important;
+//   line-height: auto !important;
+//   margin-bottom: auto !important;
+// }
+// .redactor_editor h2 {
+//   font-size: 100% !important;
+//   line-height: auto !important;
+//   margin-bottom: auto !important;
+// }
+// .redactor_editor h3 {
+//   font-size: 100% !important;
+//   line-height: auto !important;
+//   margin-bottom: auto !important;
+// }
+// .redactor_editor h4 {
+//   font-size: 100% !important;
+//   line-height: auto !important;
+//   margin-bottom: auto !important;
+// }
+// .redactor_editor h5 {
+//   font-size: 100% !important;
+//   line-height: auto !important;
+//   margin-bottom: auto !important;
+// }
+// .redactor_editor h6 {
+//   font-size: 100% !important;
+//   line-height: auto !important;
+//   text-transform: auto !important;
+//   margin-bottom: auto !important;
+// }

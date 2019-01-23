@@ -1,0 +1,109 @@
+#container {
+	line-height: 140%;
+}
+
+header {
+	height: 9em;
+	position: fixed;
+	z-index: 500;
+	width: 100%;
+}
+
+nav#menu, section#things, section#static, section#flyout, section#dashboard {
+	top: 9em;
+	position: absolute;
+	width: 20%;
+	padding-bottom: 5%;
+}
+
+nav#menu { width: 13%; top: 10em; }
+
+section#things, section#static {
+	width: 35%;
+	left: 15%;
+	bottom: 2em;
+}
+
+section#dashboard {
+	width: 84%;
+	left: 15%;
+	bottom: 2em;
+	box-sizing: border-box;
+}
+
+section#dashboard .yui3-u-1-2.left {
+	padding-right: 1%;
+	box-sizing: border-box;
+
+}
+
+section#dashboard .yui3-u-1-2.right {
+	padding-left: 1%;
+	box-sizing: border-box;
+}
+
+/*section#things {
+	display: flex;
+	flex-flow: column nowrap;
+	align-items: flex-end;
+	align-content: flex-end;
+}*/
+
+section#things ul {
+	margin-bottom: 0 0 2.5em 0;
+}
+
+nav#menu, section#flyout {
+	position: fixed;
+}
+
+section#flyout {
+	left: auto;
+	right: 1%;
+	width: 49%;
+	overflow: hidden;
+	bottom: 2em;
+}
+
+section.full-width {
+	position: absolute;
+	top: 10em;
+	left: 2%;
+	bottom: 4em;
+	padding-top: 2em;
+	width: 96%;
+}
+
+body#error section#flyout {
+	border-left: 0;
+}
+
+section#error {
+	top: 17em;
+	left: 15%;
+	width: 50%;
+	position: absolute;
+}
+
+footer {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	clear: both;
+	display: block;
+	color: #999;
+	z-index: 50;
+	background: #ebebeb;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.84, rgb(235,235,235)),
+	    color-stop(0.99, rgb(221,221,221))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(235,235,235) 84%,
+	    rgb(221,221,221) 99%
+	);
+}

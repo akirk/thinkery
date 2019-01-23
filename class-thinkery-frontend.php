@@ -51,9 +51,8 @@ class Thinkery_Frontend {
 	 * Register the WordPress hooks
 	 */
 	private function register_hooks() {
-		add_filter( 'pre_get_posts', array( $this, 'friend_posts_query' ), 2 );
-		add_filter( 'post_type_link', array( $this, 'friend_post_link' ), 10, 4 );
-		add_filter( 'get_edit_post_link', array( $this, 'friend_post_edit_link' ), 10, 2 );
+		add_filter( 'pre_get_posts', array( $this, 'thinkery_posts_query' ), 2 );
+		add_filter( 'post_type_link', array( $this, 'thinkery_post_link' ), 10, 4 );
 		add_filter( 'template_include', array( $this, 'template_override' ) );
 		add_filter( 'init', array( $this, 'register_thinkery_sidebar' ) );
 		add_action( 'wp_ajax_thinkery_publish', array( $this, 'frontend_publish_post' ) );
@@ -93,7 +92,11 @@ class Thinkery_Frontend {
 	 */
 	public function enqueue_scripts() {
 		if ( is_user_logged_in() ) {
-			wp_enqueue_script( 'thinkery', plugins_url( 'thinkery.js', __FILE__ ), array( 'jquery' ) );
+			wp_enqueue_script( 'thinkery',
+				plugins_url( 'thinkery.js', __FILE__ ), array( 'jquery', 'jquery.cookie', 'jquery.thinkeryAutocompleter' ), '1.0', true );
+			wp_enqueue_script( 'jquery.cookie', plugins_url( 'js/jquery.cookie.js', __FILE__ ), array( 'jquery' ) );
+			wp_enqueue_script( 'jquery.cookie', plugins_url( 'js/jquery.cookie.js', __FILE__ ), array( 'jquery' ) );
+			wp_enqueue_script( 'jquery.thinkeryAutocompleter', plugins_url( 'js/jquery.thinkeryAutocompleter.js', __FILE__ ), array( 'jquery' ) );
 			wp_enqueue_style( 'thinkery', plugins_url( 'thinkery.css', __FILE__ ) );
 			$variables = array(
 				'ajax_url'    => admin_url( 'admin-ajax.php' ),
@@ -153,17 +156,6 @@ class Thinkery_Frontend {
 		}
 
 		if ( current_user_can( 'edit_posts' ) ) {
-			if ( isset( $_GET['refresh'] ) ) {
-				add_filter( 'notify_about_new_friend_post', '__return_false', 999 );
-				add_filter(
-					'wp_feed_options',
-					function( $feed ) {
-						$feed->enable_cache( false );
-					}
-				);
-				$this->thinkery->feed->retrieve_friend_posts( null, true );
-			}
-
 			if ( ! have_posts() && ! get_query_var( 'author_name' ) ) {
 				return apply_filters( 'thinkery_template_path', 'thinkery/no-posts.php' );
 			}
@@ -174,26 +166,7 @@ class Thinkery_Frontend {
 	}
 
 	/**
-	 * Don't show the edit link for friend posts.
-	 *
-	 * @param  string $link    The edit link.
-	 * @param  int    $post_id The post id.
-	 * @return string|bool The edit link or false.
-	 */
-	public function friend_post_edit_link( $link, $post_id ) {
-		global $post;
-
-		if ( $post && Thinkery_Things::CPT === $post->post_type ) {
-			if ( $this->on_thinkery_frontend ) {
-				return false;
-			}
-			return get_the_guid( $post );
-		}
-		return $link;
-	}
-
-	/**
-	 * Link friend posts to the remote site.
+	 * Link thinkery posts to the remote site.
 	 *
 	 * @param string  $post_link The post's permalink.
 	 * @param WP_Post $post      The post in question.
@@ -201,8 +174,8 @@ class Thinkery_Frontend {
 	 * @param bool    $sample    Is it a sample permalink.
 	 * @reeturn string The overriden post link.
 	 */
-	public function friend_post_link( $post_link, WP_Post $post, $leavename, $sample ) {
-		if ( Thinkery_Things::CPT === $post->post_type || Thinkery_Saved::CPT === $post->post_type ) {
+	public function thinkery_post_link( $post_link, WP_Post $post, $leavename, $sample ) {
+		if ( Thinkery_Things::CPT === $post->post_type ) {
 			return get_the_guid( $post );
 		}
 		return $post_link;
@@ -234,7 +207,7 @@ class Thinkery_Frontend {
 	 * @param  WP_Query $query The main query.
 	 * @return WP_Query The modified main query.
 	 */
-	public function friend_posts_query( $query ) {
+	public function thinkery_posts_query( $query ) {
 		global $wp_query;
 		if ( $wp_query !== $query || ! $this->is_thinkery_frontend() ) {
 			return $query;

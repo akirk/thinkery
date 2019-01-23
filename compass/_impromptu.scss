@@ -1,0 +1,183 @@
+/*
+------------------------------
+	Impromptu's
+------------------------------
+*/
+.jqifade{
+	position: absolute;
+	background-color: #999;
+}
+div.jqi{
+	width: auto;
+	min-width: 20em;
+	max-width: 50%;
+	position: absolute;
+	background-color: #fff;
+	text-align: left;
+	border: 5px solid #ccc;
+	padding: 2em;
+	-webkit-box-shadow: 0px 0px 20px #666;
+	-moz-box-shadow: 0px 0px 20px #666;
+	box-shadow: 0px 0px 20px #666;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, rgb(230,230,230)),
+	    color-stop(0.29, rgb(255,255,255))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(230,230,230) 0%,
+	    rgb(255,255,255) 29%
+	);
+}
+div.jqi .jqicontainer{
+
+}
+div.jqi .jqiclose{
+	position: absolute;
+	top: -16px; right: -18px;
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	background: url(../img/sprite/btn_close_modal.png) no-repeat;
+}
+div.jqi .jqimessage{
+
+
+}
+div.jqi .jqibuttons {
+	margin: 1.5em 0 0 0;
+	padding: 0.5em;
+	border: solid 1px #eeeeee;
+	background-color: #f4f4f4;
+}
+div.jqi button{
+	margin: 0 1em 0 0;
+	border: 1px solid #949494;
+	color: #fff;
+	font-weight: bold;
+	padding: .4em .75em .4em .75em;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	background: #949494;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.25, rgb(168,168,168)),
+	    color-stop(0.75, rgb(207,207,207))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(168,168,168) 25%,
+	    rgb(207,207,207) 75%
+	);
+}
+div.jqi button.jqidefaultbutton, div.jqibox.login button {
+	border: 1px solid #73c1d6;
+	background: #98cddc;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.5, rgb(152,205,220)),
+	    color-stop(0.94, rgb(186,223,233))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(152,205,220) 50%,
+	    rgb(186,223,233) 94%
+	);
+}
+
+div.jqibox.delete button.jqidefaultbutton {
+	border: 1px solid #a40000;
+	background: #cc0000;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.34, rgb(204,0,0)),
+	    color-stop(0.67, rgb(235,0,0))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(204,0,0) 34%,
+	    rgb(235,0,0) 67%
+	);
+}
+
+div.jqi button:hover {
+	border-color: #5ebcd6;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.5, rgb(129,200,219)),
+	    color-stop(0.94, rgb(162,217,232))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(129,200,219) 50%,
+	    rgb(162,217,232) 94%
+	);
+}
+
+.jqiwarning .jqi .jqibuttons{
+	background-color: #BF5E26;
+}
+
+#jqibox h1, .jqibox h1 {
+	font-weight: bold;
+	font-size: 145%;
+	line-height: 120%;
+	margin: 0 0 1em;
+}
+
+/*
+------------------------------
+	impromptu
+------------------------------
+*/
+.impromptuwarning .impromptu{ background-color: #aaaaaa; }
+.impromptufade{
+	position: absolute;
+	background-color: #ffffff;
+}
+div.impromptu{
+    position: absolute;
+	background-color: #cccccc;
+	padding: 10px;
+	width: 300px;
+	text-align: left;
+}
+div.impromptu .impromptuclose{
+    float: right;
+    margin: -35px -10px 0 0;
+    cursor: pointer;
+    color: #213e80;
+}
+div.impromptu .impromptucontainer{
+	background-color: #213e80;
+	padding: 5px;
+	color: #ffffff;
+	font-weight: bold;
+}
+div.impromptu .impromptumessage{
+	background-color: #415ea0;
+	padding: 10px;
+}
+div.impromptu .impromptubuttons{
+	text-align: center;
+	padding: 5px 0 0 0;
+}
+div.impromptu button{
+	padding: 3px 10px 3px 10px;
+	margin: 0 10px;
+}
+

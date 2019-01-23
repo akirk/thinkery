@@ -1,0 +1,355 @@
+$sprite-arrow_down-position: 100%;
+$sprite: sprite-map("sprite/*.png", $spacing: 12px);
+
+a.delete, submit a.delete {
+	color: #d36969;
+}
+
+a.delete:hover {
+	color: #b83030;
+}
+
+.warning, .warning button {
+	color: #c30101;
+}
+
+.warning button {
+	font-weight: bold;
+	border: 1px solid #d9c87e;
+	padding: .4em .3em .4em .3em;
+	line-height: 1;
+	background: #ffefa6;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, rgb(255,239,166)),
+	    color-stop(0.5, rgb(255,245,200))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(255,239,166) 0%,
+	    rgb(255,245,200) 50%
+	);
+}
+
+.warning button:hover {
+	border-color: #ccb54e;
+	background: #f7e388;
+	background: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0, rgb(255,242,186)),
+	    color-stop(0.5, rgb(255,248,217))
+	);
+	background: -moz-linear-gradient(
+	    center bottom,
+	    rgb(255,242,186) 0%,
+	    rgb(255,248,217) 50%
+	);
+}
+
+#search .search-buttons {
+	position: absolute;
+	right: 0;
+}
+
+#search-input button {
+	margin: 0.2em 0.2em 0 0;
+	width: 2.1em;
+	height: 2.1em;
+	border: 0;
+	float: right;
+}
+
+#search-input button.add { background: sprite($sprite, btn_add); }
+#search-input button.search { background: sprite($sprite, btn_search); }
+#search-input button.searchadd { background: sprite($sprite, btn_searchadd); }
+
+button, a.button {
+	border: 1px solid #73c1d6;
+	color: #fff;
+	font-weight: bold;
+	padding: .4em .75em .4em .75em;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	background: #98cddc;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.5, rgb(152,205,220)),
+	    color-stop(0.94, rgb(186,223,233))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(152,205,220) 50%,
+	    rgb(186,223,233) 94%
+	);
+}
+
+button.red, a.button.red {
+	border: 1px solid #c30101 !important;
+	color: #fff !important;
+	font-weight: bold;
+	padding: .4em .75em .4em .75em;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	background: #98cddc !important;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.5, rgb(152,0,0)),
+	    color-stop(0.94, rgb(186,0,0))
+	) !important;
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(152,0,0) 50%,
+	    rgb(186,0,0) 94%
+	) !important;
+}
+
+button.green {
+	border: 1px solid #01c301 !important;
+	color: #fff !important;
+	font-weight: bold;
+	padding: .4em .75em .4em .75em;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	background: #cd98dc !important;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.5, rgb(0,152,0)),
+	    color-stop(0.94, rgb(0,186,0))
+	) !important;
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(0,152,0) 50%,
+	    rgb(0,186,0) 94%
+	) !important;
+}
+
+button.yellow {
+	border: 1px solid #c3c301 !important;
+	color: #fff !important;
+	font-weight: bold;
+	padding: .4em .75em .4em .75em;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	background: #cd98dc !important;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.5, rgb(152,152,0)),
+	    color-stop(0.94, rgb(186,186,0))
+	) !important;
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(152,152,0) 50%,
+	    rgb(186,186,0) 94%
+	) !important;
+}
+
+button.cancel {
+	background: #949494 !important;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.25, rgb(168,168,168)),
+	    color-stop(0.75, rgb(207,207,207))
+	) !important;
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(168,168,168) 25%,
+	    rgb(207,207,207) 75%
+	) !important;
+	border: 1px solid #949494 !important;
+}
+
+button[type="submit"] {
+	margin-top: .75em;
+}
+
+button:hover, a.button:hover {
+	border-color: #5ebcd6;
+	background: #81c8db;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.5, rgb(129,200,219)),
+	    color-stop(0.94, rgb(162,217,232))
+	);
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(129,200,219) 50%,
+	    rgb(162,217,232) 94%
+	);
+}
+
+button.red:hover, a.button.red:hover {
+	border-color: #f40000 !important;
+	background: #c30101 !important;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.5, rgb(129,0,0)),
+	    color-stop(0.94, rgb(162,0,0))
+	) !important;
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(129,0,0) 50%,
+	    rgb(162,0,0) 94%
+	) !important;
+}
+
+button.green:hover {
+	border-color: #00f400 !important;
+	background: #01c301 !important;
+	background-image: -webkit-gradient(
+	    linear,
+	    left bottom,
+	    left top,
+	    color-stop(0.5, rgb(0,129,0)),
+	    color-stop(0.94, rgb(0,162,0))
+	) !important;
+	background-image: -moz-linear-gradient(
+	    center bottom,
+	    rgb(0,129,0) 50%,
+	    rgb(0,162,0) 94%
+	) !important;
+}
+
+button:disabled {
+	opacity: .3;
+}
+
+a.register {
+		background-color: #7fbf4d;
+		background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0%,#7fbf4d),color-stop(100%,#63a62f));
+		background-image: -webkit-linear-gradient(top,#7fbf4d,#63a62f);
+		background-image: -moz-linear-gradient(top,#7fbf4d,#63a62f);
+		background-image: -ms-linear-gradient(top,#7fbf4d,#63a62f);
+		background-image: -o-linear-gradient(top,#7fbf4d,#63a62f);
+		background-image: linear-gradient(top,#7fbf4d,#63a62f);
+		border: 1px solid #63a62f;
+		border-bottom: 1px solid #5b992b;
+		border-radius: 3px;
+		-webkit-box-shadow: inset 0 1px 0 0 #96ca6d;
+		box-shadow: inset 0 1px 0 0 #96ca6d;
+		color: #fff;
+		font: bold 16px/1 Helvetica, Arial,sans-serif;
+		padding: 10px 13px;
+		text-align: center;
+		text-shadow: 0 -1px 0 #4c9021;
+	}
+
+	a.register:hover {
+		background-color:#76b347;
+		background-image:-webkit-gradient(linear,left top,left bottom,color-stop(0%,#76b347),color-stop(100%,#5e9e2e));
+		background-image:-webkit-linear-gradient(top,#76b347,#5e9e2e);
+		background-image:-moz-linear-gradient(top,#76b347,#5e9e2e);
+		background-image:-ms-linear-gradient(top,#76b347,#5e9e2e);
+		background-image:-o-linear-gradient(top,#76b347,#5e9e2e);
+		background-image:linear-gradient(top,#76b347,#5e9e2e);-webkit-box-shadow:inset 0 1px 0 0 #8dbf67;box-shadow:inset 0 1px 0 0 #8dbf67;cursor:pointer;
+	}
+
+nav#user a.register {
+	background: inherit;
+	text-shadow: inherit;
+	border: inherit;
+	border-radius: 0;
+	color: $link_color;
+	font: inherit;
+	text-align: inherit;
+	text-shadow: inherit;
+	padding: inherit;
+	box-shadow: inherit;
+}
+
+nav#user a.register:hover {
+	color: $link_hover_color;
+}
+
+
+/**
+ * Icons
+**/
+
+.icn.permalink { background: sprite($sprite, icn_permalink, 0, 2px) no-repeat; padding-left: 1.5em; }
+.icn.permalink:hover { background: sprite($sprite, icn_permalink_hover, 0, 2px) no-repeat; }
+.icn.public { background: sprite($sprite, icn_public) no-repeat; cursor: pointer; padding-left: 1.5em; }
+.icn.public:hover { background: sprite($sprite, icn_public_hover) no-repeat; cursor: pointer; color: #008fbe; }
+.icn.private { background: sprite($sprite, icn_private) no-repeat; cursor: pointer; }
+.icn.private:hover { background: sprite($sprite, icn_private_hover) no-repeat; cursor: pointer; color: #008fbe; }
+.icn.pin { background: sprite($sprite, icn_pin, 0, 2px) no-repeat; cursor: pointer; }
+.icn.pin:hover { background: sprite($sprite, icn_pin_hover, 0, 2px) no-repeat; cursor: pointer; color: #008fbe; }
+li.dir ul li .icn.public { background: sprite($sprite, icn_public, 0, 6px) no-repeat; cursor: pointer; }
+li.dir ul li .icn.public:hover { background: sprite($sprite, icn_public_hover, 0, 6px) no-repeat; cursor: pointer; }
+li.dir ul li .icn.private { background: sprite($sprite, icn_private, 0, 6px) no-repeat; cursor: pointer; }
+li.dir ul li .icn.private:hover { background: sprite($sprite, icn_private_hover, 0, 6px) no-repeat; cursor: pointer; }
+.icn.archive { background: sprite($sprite, icn_archive, 0, 2px) no-repeat; }
+.icn.archive:hover { background: sprite($sprite, icn_archive_hover, 0, 2px) no-repeat; }
+.icn.shared { background: sprite($sprite, icn_shared) no-repeat; padding-left: 1.75em; }
+.icn.shared:hover { background: sprite($sprite, icn_shared_hover) no-repeat; }
+.icn.edit {
+	background: sprite($sprite, icn_edit, 0, 2px) no-repeat;
+	&.note.tip { background: sprite($sprite, icn_edit, 0, 1px) no-repeat; }
+}
+.icn.edit:hover {
+	background: sprite($sprite, icn_edit_hover, 0, 2px) no-repeat;
+	&.note.tip { background: sprite($sprite, icn_edit_hover, 0, 1px) no-repeat; }
+}
+
+.icn.delete { background: sprite($sprite, icn_delete, 0, 2px) no-repeat; }
+.icn.delete:hover { background: sprite($sprite, icn_delete_hover, 0, 2px) no-repeat; }
+.icn.settings, nav#filter .icn.settings { background: sprite($sprite, icn_settings, 0, 2px) no-repeat; }
+.icn.settings:hover, nav#filter .icn.settings:hover { background: sprite($sprite, icn_settings_hover, 0, 2px) no-repeat; }
+a#edittags.icn.settings, a#addsmartfolder.icn.addsmartfolder, a#toggleBulk.icn.bulkedit, nav#filter a#specialtags.icn.settings, , nav#filter a#edittags.icn.settings, nav#filter a#toggleBulk.icn.bulkedit, nav#filter a#addsmartfolder.icn.addsmartfolder { font-size: smaller; padding-left: 2em !important; }
+.icn.rss { background: sprite($sprite, icn_rss) no-repeat; padding-left: 1.5em; }
+.icn.bulkedit, nav#filter .icn.bulkedit { background: sprite($sprite, icn_bulkedit, 0, 2px) no-repeat; padding-left: 1.75em; }
+.icn.bulkedit:hover, nav#filter .icn.bulkedit:hover { background: sprite($sprite, icn_bulkedit_hover, 0, 2px) no-repeat; }
+.icn.addsmartfolder, nav#filter .icn.addsmartfolder { background: sprite($sprite, icn_smart_add, 0, 2px) no-repeat;  }
+.icn.addsmartfolder:hover, nav#filter .icn.addsmartfolder:hover { background: sprite($sprite, icn_smart_add_hover, 0, 2px) no-repeat; }
+
+.icn.facebook { background: sprite($sprite, icn_facebook) no-repeat; cursor: pointer; }
+.icn.facebook:hover, #flyout span.sharer .icn.facebook { background: sprite($sprite, icn_facebook_hover) no-repeat; cursor: pointer; }
+.icn.twitter { background: sprite($sprite, icn_twitter) no-repeat; cursor: pointer; }
+.icn.twitter:hover, #flyout span.sharer .icn.twitter { background: sprite($sprite, icn_twitter_hover) no-repeat; cursor: pointer; }
+
+.privacy .icn.public { background: sprite($sprite, icn_list_public, 0, 2px) no-repeat; cursor: pointer; }
+li.active .privacy .icn.public { background: sprite($sprite, icn_list_public_active, 0, 2px) no-repeat; cursor: pointer; }
+.privacy .icn.private { background: sprite($sprite, icn_list_private, 0, 2px) no-repeat; cursor: pointer; }
+li.active .privacy .icn.private { background: sprite($sprite, icn_list_private_active, 0, 2px) no-repeat; cursor: pointer; }
+.privacy .icn.shared { background: sprite($sprite, icn_list_shared, 0, 2px) no-repeat; cursor: pointer; }
+li.active .privacy .icn.shared { background: sprite($sprite, icn_list_shared_active, 0, 2px) no-repeat; cursor: pointer; }
+
+a.external { background: sprite($sprite, icn_external, 0, 2px) no-repeat right center; padding-right: 1.2em; }
+a.external:hover { background: sprite($sprite, icn_external_hover, 0, 2px) no-repeat right center; }
+
+.toggle, h6.toggle { background: sprite($sprite, arrow_open) no-repeat left 3px; cursor: pointer; padding-left: 1em; }
+.closed, h6.closed { background: sprite($sprite, arrow_closed) no-repeat left 3px; cursor: pointer; padding-left: 1em; }
+
+kbd { height: 3em; width: 3em; display: inline-block; background: sprite($sprite, kbd) no-repeat; text-align: center; vertical-align: middle; font-family: Arial, Helvetica, sans-serif; font-size: 90%; font-weight: bold; }
+kbd span {
+	padding: .8em 0 1em 0;
+	display: inline-block;
+}
+
+kbd.small {
+	height: 1.5em;
+	width: 1.5em;
+	background: sprite($sprite, kbd_small, 0, 1px) no-repeat;
+	font-weight: normal;
+}
+
+kbd.small span {
+	padding: 0;
+}
