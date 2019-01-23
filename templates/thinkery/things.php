@@ -18,22 +18,29 @@ $things = new WP_Query(
 $tags = get_terms(
 	array(
 		'taxonomy'   => Thinkery_Things::TAG,
-		'hide_empty' => false,
+		'orderby'    => 'count',
+		'order'      => 'DESC',
 	)
 );
 $json_tags = array();
-
 include __DIR__ . '/header.php'; ?>
 <section id="things">
 	<form action="/js/bulk.php" name="bulk" method="post">
 		<ul class="things">
-		<?php if ( ! have_posts() ) : ?>
-			<?php include __DIR__ . '/list/no-thing.php'; ?>
-		<?php endif; ?>
-
 		<?php
+
+		$first_post = false;
+		if ( ! have_posts() ) {
+			include __DIR__ . '/list/no-thing.php';
+			$first_post = array(
+				'post_title' => '',
+			);
+		}
 		while ( have_posts() ) {
 			the_post();
+			if ( ! $first_post ) {
+				$first_post = $post;
+			}
 			include __DIR__ . '/list/thing.php';
 			$json_thing = array(
 				'_id'    => get_the_ID(),
@@ -44,6 +51,7 @@ include __DIR__ . '/header.php'; ?>
 				'classNames'   => array(),
 				'html'   => get_the_content(),
 				'url'   => get_the_permalink(),
+				'private' => 'publish' !== get_post_status(),
 			);
 			if ( ! $json_thing['tags'] ) {
 				$json_thing['tags'] = '';
@@ -55,6 +63,7 @@ include __DIR__ . '/header.php'; ?>
 	</form>
 </section>
 <section id="flyout" class="show-thing"><?php
+	setup_postdata( $first_post );
 	include __DIR__ . "/flyout.php";
 ?>
 </section>

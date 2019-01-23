@@ -211,11 +211,11 @@ class Thinkery_Frontend {
 	protected function is_thinkery_frontend() {
 		global $wp_query;
 
-		if ( ! isset( $wp_query ) || ! isset( $wp_query->query['pagename'] ) ) {
-			return false;
+		if ( isset( $wp_query ) && ! empty( $wp_query->query['thinkery_tag'] ) ) {
+			$wp_query->query['pagename'] = 'thinkery/' . $wp_query->query['thinkery_tag'];
 		}
 
-		if ( isset( $_GET['public'] ) ) {
+		if ( ! isset( $wp_query ) || ! isset( $wp_query->query['pagename'] ) ) {
 			return false;
 		}
 
@@ -242,7 +242,7 @@ class Thinkery_Frontend {
 
 		$page_id = get_query_var( 'page' );
 
-		$query->set( 'post_status', array( 'publish', 'private' ) );
+		$query->set( 'post_status', array( 'publish', 'private', 'draft' ) );
 		$query->set( 'post_type', array( Thinkery_Things::CPT ) );
 		$query->is_page = false;
 		$query->set( 'page', null );
@@ -250,10 +250,17 @@ class Thinkery_Frontend {
 
 		$pagename_parts = explode( '/', trim( $wp_query->query['pagename'], '/' ) );
 		if ( isset( $pagename_parts[1] ) ) {
-			$this->author = get_user_by( 'login', $pagename_parts[1] );
-			$query->set( 'author_name', $pagename_parts[1] );
+			$this->tag = $pagename_parts[1];
+			$query->set(
+				'tax_query', array(
+					array(
+						'taxonomy' => Thinkery_Things::TAG,
+						'field' => 'slug',
+						'terms' => $pagename_parts[1],
+					),
+				)
+			);
 			$query->is_singular = false;
-			$query->is_author   = true;
 		} elseif ( $page_id ) {
 			$query->set( 'page_id', $page_id );
 			$query->is_singular = true;

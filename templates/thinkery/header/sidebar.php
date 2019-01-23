@@ -1,16 +1,14 @@
 <?php
 $styles = array();
+global $wp_query;
+$thinkery_current_tag = $wp_query->query['thinkery_tag'];
 
 function displayTag( $tag, $param ) {
-
-	if ( ! isset( $param['selectedTag'] ) ) {
-		$param['selectedTag'] = false;
-	}
-
 	$class = array();
 	$subtags = array();
 
-	if ( $param['selectedTag'] == $tag->name ) {
+	global $thinkery_current_tag;
+	if ( $thinkery_current_tag == $tag->name ) {
 		if ( $tag->name && substr( $tag->name, 0, 1 ) != ':' ) {
 			$subtags = $tag->name->subtags;
 			if ( ! empty( $subtags ) ) {
@@ -35,32 +33,24 @@ function displayTag( $tag, $param ) {
 		 class="<?php echo implode( ' ', $class ); ?>"
 		<?php
 	}
-	if ( $tag->name === false ) {
-		?>
-		 data-all="true">
-		<?php
-	} else {
-		?>
-		 data-tag="<?php echo $tag->name; ?>"
-		<?php
-		global $user;
-		if ( false && $special_tag = $user->specialTag( $tag->name ) ) {
-			foreach ( $special_tag as $t ) {
-				if ( ! isset( $t['type'] ) ) {
-					continue;
-				}
-				if ( $t['type'] == 'color' ) {
-					echo ' data-color="', $t['options']['hex'], '" style="border-left: 2px solid ', $t['options']['hex'], '"';
-				} elseif ( $t['type'] == 'todo' ) {
-					echo ' data-todo="true"';
-				}
+	?>
+	 data-tag="<?php echo $tag->name; ?>"
+	<?php
+	global $user;
+	if ( false && $special_tag = $user->specialTag( $tag->name ) ) {
+		foreach ( $special_tag as $t ) {
+			if ( ! isset( $t['type'] ) ) {
+				continue;
+			}
+			if ( $t['type'] == 'color' ) {
+				echo ' data-color="', $t['options']['hex'], '" style="border-left: 2px solid ', $t['options']['hex'], '"';
+			} elseif ( $t['type'] == 'todo' ) {
+				echo ' data-todo="true"';
 			}
 		}
-		?>
-		>
-		<?php
 	}
 	?>
+	>
 	<a href="/thinkery/<?php echo $tag->slug; ?>" title="<?php printf( _n( '%s thing', '%s things', $tag->count, 'thinkery' ), $tag->count ); ?>">
 	<?php
 
@@ -131,28 +121,9 @@ function displayTag( $tag, $param ) {
 <nav id="menu">
 	<div class="create-new-tag"><div class="grey bold fll">+</div> Drop for new tag</div>
 	<ul class="tags all">
-		<?php
-			// $all = $things->get_total();
-			// $all['tag'] = false;
-			// $all['url'] = '/thinkery/';
-			// displayTag( $all, $param );
-
-			// $hideGlobalTags = false;
-			// foreach (array(
-			// ":urls" => array( THINKERY_GLOBAL_TAG_BOOKMARKS, "Bookmarks" ),
-			// ":notes" => array( THINKERY_GLOBAL_TAG_NOTES, "Notes" ),
-			// ":todos" => array( THINKERY_GLOBAL_TAG_TODOS, "Todos" ),
-			// ) as $tag => $v) {
-			// if ($hideGlobalTags & $v[0]) continue;
-			// $global = array(
-			// "tag" => $tag,
-			// "count" => $display_user->tags->count($tag),
-			// "title" => $v[1],
-			// "url" => BuildUrl::TagUrl($tag, $display_user->username),
-			// );
-			// displayTag($global, $param);
-			// }
-		?>
+		<li class="<?php if ( ! $thinkery_current_tag ) echo 'active'; ?>" data-all="true">
+			<a href="/thinkery/" title="All">All <small class="num"></small></a>
+		</li>
 	</ul>
 	<?php
 

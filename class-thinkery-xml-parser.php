@@ -32,17 +32,17 @@ class Thinkery_XML_Parser {
 		$xml = simplexml_import_dom( $dom );
 		unset( $dom );
 
-		// halt if loading produces an error
 		if ( ! $xml )
 			return new WP_Error( 'SimpleXML_parse_error', __( 'There was an error when reading this WXR file', 'wordpress-importer' ), libxml_get_errors() );
 
 		foreach ( $xml->xpath( '//thinkery/thing' ) as $thing ) {
 			$post = array(
 				'post_title' => (string) $thing->title,
-				'url' => (string) $thing->url,
+				'guid' => (string) $thing->url,
 				'post_type' => Thinkery_Things::CPT,
 				'post_content' => (string) $thing->html,
-				'post_date' => date( 'Y-m-d H:i:s', strtotime( (string) $thing->date ) ),
+				'post_date' => date( 'Y-m-d H:i:s', strtotime( $thing->date ) ),
+				'tags' => strlen( $thing->tags ) ? explode( ' ', $thing->tags ) : array(),
 			);
 			$posts[] = $post;
 		}
