@@ -60,6 +60,7 @@ class Thinkery {
 	public function __construct() {
 		$this->admin = new Thinkery_Admin( $this );
 		$this->frontend = new Thinkery_Frontend( $this );
+		$this->importer = new Thinkery_Importer( $this );
 		$this->things = new Thinkery_Things( $this );
 		$this->register_hooks();
 	}

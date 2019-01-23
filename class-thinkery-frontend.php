@@ -29,11 +29,11 @@ class Thinkery_Frontend {
 	private $on_thinkery_frontend = false;
 
 	/**
-	 * Whether an author is being displayed
+	 * Whether an tag is being displayed
 	 *
 	 * @var string|false
 	 */
-	public $author = false;
+	public $tag = false;
 
 	/**
 	 * Constructor
