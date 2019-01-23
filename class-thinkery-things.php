@@ -2,8 +2,6 @@
 /**
  * Thinkery s
  *
- *
- *
  * @package Thinkery
  */
 
@@ -85,31 +83,33 @@ class Thinkery_Things {
 		register_post_type( self::CPT, $args );
 
 		$tag_labels = array(
-		  'name' => _x( 'Tags', 'taxonomy general name' ),
-		  'singular_name' => _x( 'Tag', 'taxonomy singular name' ),
-		  'search_items' =>  __( 'Search Tags' ),
-		  'popular_items' => __( 'Popular Tags' ),
-		  'all_items' => __( 'All Tags' ),
-		  'parent_item' => null,
-		  'parent_item_colon' => null,
-		  'edit_item' => __( 'Edit Tag' ),
-		  'update_item' => __( 'Update Tag' ),
-		  'add_new_item' => __( 'Add New Tag' ),
-		  'new_item_name' => __( 'New Tag Name' ),
-		  'separate_items_with_commas' => __( 'Separate tags with commas' ),
-		  'add_or_remove_items' => __( 'Add or remove tags' ),
-		  'choose_from_most_used' => __( 'Choose from the most used tags' ),
-		  'menu_name' => __( 'Tags' ),
+			'name'                       => _x( 'Tags', 'taxonomy general name' ),
+			'singular_name'              => _x( 'Tag', 'taxonomy singular name' ),
+			'search_items'               => __( 'Search Tags' ),
+			'popular_items'              => __( 'Popular Tags' ),
+			'all_items'                  => __( 'All Tags' ),
+			'parent_item'                => null,
+			'parent_item_colon'          => null,
+			'edit_item'                  => __( 'Edit Tag' ),
+			'update_item'                => __( 'Update Tag' ),
+			'add_new_item'               => __( 'Add New Tag' ),
+			'new_item_name'              => __( 'New Tag Name' ),
+			'separate_items_with_commas' => __( 'Separate tags with commas' ),
+			'add_or_remove_items'        => __( 'Add or remove tags' ),
+			'choose_from_most_used'      => __( 'Choose from the most used tags' ),
+			'menu_name'                  => __( 'Tags' ),
 		);
 
 		register_taxonomy(
-			self::TAG, self::CPT, array(
-				'hierarchical' => true,
-				'labels' => $tag_labels,
-				'show_ui' => true,
+			self::TAG,
+			self::CPT,
+			array(
+				'hierarchical'          => true,
+				'labels'                => $tag_labels,
+				'show_ui'               => true,
 				'update_count_callback' => array( $this, '_update_post_term_count' ),
-				'query_var' => true,
-				'rewrite' => array( 'slug' => 'tag' ),
+				'query_var'             => true,
+				'rewrite'               => array( 'slug' => 'tag' ),
 			)
 		);
 	}
@@ -125,8 +125,9 @@ class Thinkery_Things {
 
 		$object_types = (array) $taxonomy->object_type;
 
-		foreach ( $object_types as &$object_type )
+		foreach ( $object_types as &$object_type ) {
 			list( $object_type ) = explode( ':', $object_type );
+		}
 
 		$object_types = array_unique( $object_types );
 
@@ -135,18 +136,21 @@ class Thinkery_Things {
 			$check_attachments = true;
 		}
 
-		if ( $object_types )
+		if ( $object_types ) {
 			$object_types = esc_sql( array_filter( $object_types, 'post_type_exists' ) );
+		}
 
 		foreach ( (array) $terms as $term ) {
 			$count = 0;
 
 			// Attachments can be 'inherit' status, we need to base count off the parent's status if so.
-			if ( $check_attachments )
+			if ( $check_attachments ) {
 				$count += (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships, $wpdb->posts p1 WHERE p1.ID = $wpdb->term_relationships.object_id AND ( post_status = 'publish' OR ( post_status = 'inherit' AND post_parent > 0 AND ( SELECT post_status FROM $wpdb->posts WHERE ID = p1.post_parent ) = 'publish' ) ) AND post_type = 'attachment' AND term_taxonomy_id = %d", $term ) );
+			}
 
-			if ( $object_types )
-				$count += (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships, $wpdb->posts WHERE $wpdb->posts.ID = $wpdb->term_relationships.object_id AND post_type IN ('" . implode("', '", $object_types ) . "') AND term_taxonomy_id = %d", $term ) );
+			if ( $object_types ) {
+				$count += (int) $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM $wpdb->term_relationships, $wpdb->posts WHERE $wpdb->posts.ID = $wpdb->term_relationships.object_id AND post_type IN ('" . implode( "', '", $object_types ) . "') AND term_taxonomy_id = %d", $term ) );
+			}
 
 			/** This action is documented in wp-includes/taxonomy.php */
 			do_action( 'edit_term_taxonomy', $term, $taxonomy->name );

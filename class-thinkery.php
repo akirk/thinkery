@@ -2,8 +2,6 @@
 /**
  * Thinkery
  *
- *
- *
  * @package Thinkery
  */
 

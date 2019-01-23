@@ -3,20 +3,21 @@
 }
 
 header {
-	height: 9em;
+	height: 8.5em;
 	position: fixed;
+	padding-top: 1em;
 	z-index: 500;
 	width: 100%;
 }
 
 nav#menu, section#things, section#static, section#flyout, section#dashboard {
-	top: 9em;
-	position: absolute;
+	top: 11.5em;
+	position: fixed;
 	width: 20%;
 	padding-bottom: 5%;
 }
 
-nav#menu { width: 13%; top: 10em; }
+nav#menu { width: 13%; top: 13em; }
 
 section#things, section#static {
 	width: 35%;

@@ -89,21 +89,6 @@ header sub.message {
 	width: 35%;
 }
 
-#reportaproblem {
-	float: left;
-	position: absolute;
-	left: 52%;
-	top: 4.5em;
-}
-
-#reportaproblem a, a.reportaproblem {
-	color: #999;
-}
-#reportaproblem a:hover, a.reportaproblem:hover {
-	color: #666;
-}
-
-
 #search-input {
 	font-size: 110%;
 	border: 1px solid $br_grey;
@@ -1054,7 +1039,7 @@ h1.grey {
 
 	section#things {
 		left: 0;
-		top: 10em;
+		top: 13em;
 		width: 100%;
 	}
 
@@ -1216,9 +1201,6 @@ h1.grey {
 
 
 }
-
-
-
 
 @media all and (orientation:portrait) {
 

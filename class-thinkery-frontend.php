@@ -2,8 +2,6 @@
 /**
  * Thinkery Frontend
  *
- *
- *
  * @package Thinkery
  */
 
@@ -53,6 +51,7 @@ class Thinkery_Frontend {
 	private function register_hooks() {
 		add_filter( 'pre_get_posts', array( $this, 'thinkery_posts_query' ), 2 );
 		add_filter( 'post_type_link', array( $this, 'thinkery_post_link' ), 10, 4 );
+		add_filter( 'private_title_format', array( $this, 'private_title_format' ) );
 		add_filter( 'template_include', array( $this, 'template_override' ) );
 		add_filter( 'init', array( $this, 'register_thinkery_sidebar' ) );
 		add_action( 'wp_ajax_thinkery_publish', array( $this, 'frontend_publish_post' ) );
@@ -92,18 +91,31 @@ class Thinkery_Frontend {
 	 */
 	public function enqueue_scripts() {
 		if ( is_user_logged_in() ) {
-			wp_enqueue_script( 'thinkery',
-				plugins_url( 'thinkery.js', __FILE__ ), array( 'jquery', 'jquery.cookie', 'jquery.thinkeryAutocompleter' ), '1.0', true );
+			wp_enqueue_script(
+				'thinkery',
+				plugins_url( 'thinkery.js', __FILE__ ),
+				array(
+					'jquery',
+					'jquery.cookie',
+					'jquery.highlight',
+					'jquery.tiptip',
+					'jquery.ui-1.10.0.custom',
+					'jquery.thinkeryAutocompleter',
+				),
+				'1.0' + time(),
+				true
+			);
 			wp_enqueue_script( 'jquery.cookie', plugins_url( 'js/jquery.cookie.js', __FILE__ ), array( 'jquery' ) );
-			wp_enqueue_script( 'jquery.cookie', plugins_url( 'js/jquery.cookie.js', __FILE__ ), array( 'jquery' ) );
+			wp_enqueue_script( 'jquery.highlight', plugins_url( 'js/jquery.highlight.js', __FILE__ ), array( 'jquery' ) );
+			wp_enqueue_script( 'jquery.ui-1.10.0.custom', plugins_url( 'js/jquery.ui-1.10.0.custom.js', __FILE__ ), array( 'jquery' ) );
+			wp_enqueue_script( 'jquery.tiptip', plugins_url( 'js/jquery.tiptip.js', __FILE__ ), array( 'jquery' ) );
 			wp_enqueue_script( 'jquery.thinkeryAutocompleter', plugins_url( 'js/jquery.thinkeryAutocompleter.js', __FILE__ ), array( 'jquery' ) );
-			wp_enqueue_style( 'thinkery', plugins_url( 'thinkery.css', __FILE__ ) );
 			$variables = array(
 				'ajax_url'    => admin_url( 'admin-ajax.php' ),
 				'spinner_url' => admin_url( 'images/wpspin_light.gif' ),
 				'text_undo'   => __( 'Undo' ),
 			);
-			wp_localize_script( 'thinkery', 'thinkery', $variables );
+			wp_localize_script( 'thinkery', 'wp_thinkery', $variables );
 		}
 	}
 
@@ -156,10 +168,7 @@ class Thinkery_Frontend {
 		}
 
 		if ( current_user_can( 'edit_posts' ) ) {
-			if ( ! have_posts() && ! get_query_var( 'author_name' ) ) {
-				return apply_filters( 'thinkery_template_path', 'thinkery/no-posts.php' );
-			}
-			return apply_filters( 'thinkery_template_path', 'thinkery/posts.php' );
+			return apply_filters( 'thinkery_template_path', 'thinkery/things.php' );
 		}
 
 		return $template;
@@ -179,6 +188,19 @@ class Thinkery_Frontend {
 			return get_the_guid( $post );
 		}
 		return $post_link;
+	}
+
+	/**
+	 * Remove the Private: when sending a private feed.
+	 *
+	 * @param  string $title_format The title format for a private post title.
+	 * @return string The modified title format for a private post title.
+	 */
+	public function private_title_format( $title_format ) {
+		if ( $this->is_thinkery_frontend() ) {
+			return '%s';
+		}
+		return $title_format;
 	}
 
 	/**
@@ -221,7 +243,7 @@ class Thinkery_Frontend {
 		$page_id = get_query_var( 'page' );
 
 		$query->set( 'post_status', array( 'publish', 'private' ) );
-		$query->set( 'post_type', array( Thinkery_Things::CPT, 'post' ) );
+		$query->set( 'post_type', array( Thinkery_Things::CPT ) );
 		$query->is_page = false;
 		$query->set( 'page', null );
 		$query->set( 'pagename', null );

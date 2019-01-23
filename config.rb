@@ -2,14 +2,14 @@
 
 # Set this to the root of your project when deployed:
 http_path = "/"
-project_path = File.dirname(__FILE__) + '/../'
+project_path = File.dirname(__FILE__)
 css_dir = "css"
 sass_dir = "compass"
 images_dir = "img"
 http_images_path = "img"
 generated_images_dir = "img"
 http_generated_images_path = "img";
-http_stylesheets_path = "css"
+http_stylesheets_path = "."
 javascripts_dir = "js"
 
 # You can select your preferred output style here (can be overridden via the command line):

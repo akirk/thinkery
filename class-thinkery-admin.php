@@ -10,7 +10,6 @@
 /**
  * This is the class for the Thinkery Plugin Admin section.
  *
- *
  * @package Thinkery
  * @author Alex Kirk
  */
@@ -55,7 +54,7 @@ class Thinkery_Admin {
 	 * Load the admin scripts
 	 */
 	public function admin_enqueue_scripts() {
-		wp_enqueue_style( 'thinkery', plugins_url( 'thinkery.css', __FILE__ ) );
+		wp_enqueue_style( 'thinkery', plugins_url( 'css/thinkery-admin.css', __FILE__ ) );
 	}
 
 	/**

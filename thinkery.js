@@ -235,6 +235,7 @@ var Thinkery = (function($) {
 	var retrieveQueue = 0, retrieveTimeout = false;
 	// update items that have not been retrieved
 	var retrieveThings = function() {
+		return;
 		if (retrieveTimeout) {
 			clearTimeout(retrieveTimeout);
 			if (retrieveQueue > 3) {
@@ -522,6 +523,7 @@ var Thinkery = (function($) {
 	};
 
 	var updateList = function(i) {
+		console.log(i)
 		bulkedit = $("#bulkControls").is(":visible");
 		var listItem, o, l, tmp;
 
@@ -597,7 +599,7 @@ var Thinkery = (function($) {
 			listItem += '<div class="privacy"' + ((!tmp.shared || !tmp.shared.length) && tmp["private"] ? ' style="display: none"' : '') + '>' + privacyIcon + "</div>";
 			listItem += '<input type="checkbox" name="bulk[]" value="' + tmp._id + '" class="bulk" ' + (typeof tmp.checked != "undefined" && tmp.checked ? ' checked="checked"' : '') + (tmp.canEdit ? '' : ' disabled="disabled"') + ' />';
 			listItem += '<input type="checkbox" class="todo" ' + (typeof tmp.todoStatus != "undefined" && tmp.todoStatus ? ' checked="checked"' : '') + ' />';
-			listItem += '<article>' + tmp.htmlTitle + ((typeof tmp.thinking != "undefined" && tmp.thinking) ? '<img src="/img/loading.gif" class="loader" /> <span class="smaller grey">thinking...</span>' : "") + "</article>";
+			listItem += '<article>' + tmp.htmlTitle + ((typeof tmp.thinking != "undefined" && tmp.thinking) ? '<div class="loader"></div> <span class="smaller grey">thinking...</span>' : "") + "</article>";
 			actions = pinActions = "";
 			actions += privacyIcon;
 
@@ -1137,14 +1139,13 @@ var Thinkery = (function($) {
 				removeQuickEdit();
 			}
 		},
-		load: function(_username, _data, _tags) {
+		load: function(_data, _tags) {
 			Thinkery.tags = _tags;
 			if (getPref("currentQuery")) {
 				$("ul.things li article").highlight(getPref("currentQuery"));
 				$("ul.things li span.tags").highlight(getPref("currentQuery"));
 			}
 
-			username = _username;
 			originalData = data = _data;
 			$('#main').attr('username', username);
 
@@ -1152,6 +1153,7 @@ var Thinkery = (function($) {
 				updateFlyout(0, true);
 			}
 			retrieveThings();
+			// updateList();
 
 			$(document).on("click", "nav#menu ul li a", function(e) {
 				if (!Thinkery.mainListUrl) return true;
@@ -2606,14 +2608,4 @@ jQuery( function( $) {
 
 	})();
 
-	$(window).load(function() {
-        $('#joyRideTipContent').joyride({
-			autoStart : true,
-			modal:false,
-			expose: true,
-			cookieMonster: true,
-			cookieName: 'thinkeryTour',
-			cookieDomain: 'thinkery.me'
-        });
-      });
 });
