@@ -35,14 +35,20 @@ include __DIR__ . '/header.php'; ?>
 		while ( have_posts() ) {
 			the_post();
 			include __DIR__ . '/list/thing.php';
-			$json_things[] = array(
+			$json_thing = array(
 				'_id'    => get_the_ID(),
 				'title'  => get_the_title(),
+				'date'  => get_the_time( 'Y,m,d,H,i,s' ),
 				'pinned' => get_post_meta( get_the_ID(), 'pinned' ),
-				'tags'   => get_the_terms( get_the_ID(), Thinkery_Things::TAG ),
+				'tags'   => get_the_term_list( get_the_ID(), Thinkery_Things::TAG ),
 				'classNames'   => array(),
 				'html'   => get_the_content(),
+				'url'   => get_the_permalink(),
 			);
+			if ( ! $json_thing['tags'] ) {
+				$json_thing['tags'] = '';
+			}
+			$json_things[] = $json_thing;
 		}
 		?>
 		</ul>

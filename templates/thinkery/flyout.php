@@ -1,7 +1,8 @@
 <section class="content display">
 	<hgroup>
 		<a href="<?php echo esc_attr( get_the_permalink() ); ?>" class="flr arrow permalink"></a>
-		<h1><?php the_title(); ?></h1>
+		<h1 class="unlinked" style="display: none"><?php the_title(); ?></h1>
+		<h1 class="linked"><a href="<?php echo esc_attr( get_the_permalink() ); ?>"><?php the_title(); ?></a></h1>
 		<div class="yui3-g">
 			<div class="yui3-u-2-3">
 				<div class="meta">

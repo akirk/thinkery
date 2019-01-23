@@ -523,7 +523,6 @@ var Thinkery = (function($) {
 	};
 
 	var updateList = function(i) {
-		console.log(i)
 		bulkedit = $("#bulkControls").is(":visible");
 		var listItem, o, l, tmp;
 
@@ -552,7 +551,7 @@ var Thinkery = (function($) {
 				listItem.addClass(tmp.classNames[o]);
 			}
 			listItem.addClass("thing-list-item");
-			$("article", listItem).html(tmp.htmlTitle + ((typeof tmp.thinking != "undefined" && tmp.thinking) ? '<img src="/img/loading.gif" class="loader" /> <span class="smaller grey">thinking...</span>' : "")).highlight(getPref("currentQuery"));
+			$("article", listItem).html(tmp.title + ((typeof tmp.thinking != "undefined" && tmp.thinking) ? '<img src="/img/loading.gif" class="loader" /> <span class="smaller grey">thinking...</span>' : "")).highlight(getPref("currentQuery"));
 			var tags = tmp.tags;
 			if (getPref("underscoreToSpaces")) tags = tags.replace(/>(.*)</g, function(t) {
 				return t.replace(/_/g, " ");
@@ -587,6 +586,7 @@ var Thinkery = (function($) {
 		var list = $("section#things ul"), html = "", oldFirstId = $("section#flyout input.id").val(), firstId = false;
 		for (j = 0, l = data.length; j < l; j++) {
 			tmp = data[j];
+
 			listItem = "<li class=\"thing-list-item";
 			if (tmp.archived) listItem += ' archived';
 			if (tmp.pinned) listItem += ' pinned';
@@ -599,7 +599,7 @@ var Thinkery = (function($) {
 			listItem += '<div class="privacy"' + ((!tmp.shared || !tmp.shared.length) && tmp["private"] ? ' style="display: none"' : '') + '>' + privacyIcon + "</div>";
 			listItem += '<input type="checkbox" name="bulk[]" value="' + tmp._id + '" class="bulk" ' + (typeof tmp.checked != "undefined" && tmp.checked ? ' checked="checked"' : '') + (tmp.canEdit ? '' : ' disabled="disabled"') + ' />';
 			listItem += '<input type="checkbox" class="todo" ' + (typeof tmp.todoStatus != "undefined" && tmp.todoStatus ? ' checked="checked"' : '') + ' />';
-			listItem += '<article>' + tmp.htmlTitle + ((typeof tmp.thinking != "undefined" && tmp.thinking) ? '<div class="loader"></div> <span class="smaller grey">thinking...</span>' : "") + "</article>";
+			listItem += '<article>' + tmp.title + ((typeof tmp.thinking != "undefined" && tmp.thinking) ? '<div class="loader"></div> <span class="smaller grey">thinking...</span>' : "") + "</article>";
 			actions = pinActions = "";
 			actions += privacyIcon;
 
@@ -695,11 +695,11 @@ var Thinkery = (function($) {
 		if (showEdit) $("section#flyout").removeClass("show-thing"); else $("section#flyout").addClass("show-thing");
 		var showIt = function() {
 			if (tmp.url) {
-				$("h1.linked a", content).html(tmp.htmlTitle).attr("href", tmp.url).highlight(getPref("currentQuery"));
+				$("h1.linked a", content).html(tmp.title).attr("href", tmp.url).highlight(getPref("currentQuery"));
 				$("h1.linked", content).show();
 				$("h1.unlinked", content).hide();
 			} else {
-				$("h1.unlinked", content).html(tmp.htmlTitle).show().highlight(getPref("currentQuery"));
+				$("h1.unlinked", content).html(tmp.title).show().highlight(getPref("currentQuery"));
 				$("h1.linked", content).hide();
 			}
 			var html = tmp.html;
@@ -709,9 +709,6 @@ var Thinkery = (function($) {
 			});
 			$("span.tags", content).html(tags).highlight(getPref("currentQuery"));
 			$("span.dateTime", show).attr("data-t", tmp.date);
-			if (tmp.htmlNote && $.trim(String(tmp.htmlNote).replace("<br>", "")).length) {
-				html = tmp.htmlNote + (html ? "<br/><br/>" + html : "");
-			}
 			$("div.embed", content).html(html).highlight(getPref("currentQuery"));
 
 			$("a.icn.pin", content).text(tmp.pinned ? "Unpin" : "Pin").attr("title", tmp.pinned ? "Unpin" : "Pin");
@@ -1153,7 +1150,7 @@ var Thinkery = (function($) {
 				updateFlyout(0, true);
 			}
 			retrieveThings();
-			// updateList();
+			updateList();
 
 			$(document).on("click", "nav#menu ul li a", function(e) {
 				if (!Thinkery.mainListUrl) return true;
