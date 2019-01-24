@@ -91,32 +91,35 @@ class Thinkery_Frontend {
 	 */
 	public function enqueue_scripts() {
 		if ( is_user_logged_in() ) {
-			wp_enqueue_script(
-				'thinkery',
-				plugins_url( 'thinkery.js', __FILE__ ),
-				array(
-					'jquery',
-					'jquery.cookie',
-					'jquery.highlight',
-					'jquery.tiptip',
-					'jquery.ui-1.10.0.custom',
-					'jquery.thinkeryAutocompleter',
-				),
-				'1.0',
-				true
-			);
-			wp_enqueue_script( 'jquery.cookie', plugins_url( 'js/jquery.cookie.js', __FILE__ ), array( 'jquery' ) );
-			wp_enqueue_script( 'jquery.highlight', plugins_url( 'js/jquery.highlight.js', __FILE__ ), array( 'jquery' ) );
-			wp_enqueue_script( 'jquery.ui-1.10.0.custom', plugins_url( 'js/jquery.ui-1.10.0.custom.js', __FILE__ ), array( 'jquery' ) );
-			wp_enqueue_script( 'jquery.tiptip', plugins_url( 'js/jquery.tiptip.js', __FILE__ ), array( 'jquery' ) );
-			wp_enqueue_script( 'jquery.thinkeryAutocompleter', plugins_url( 'js/jquery.thinkeryAutocompleter.js', __FILE__ ), array( 'jquery' ) );
-			$variables = array(
-				'ajax_url'    => admin_url( 'admin-ajax.php' ),
-				'spinner_url' => admin_url( 'images/wpspin_light.gif' ),
-				'text_undo'   => __( 'Undo' ),
-			);
-			wp_localize_script( 'thinkery', 'wp_thinkery', $variables );
-			wp_enqueue_style( 'thinkery', plugins_url( 'css/thinkery.css', __FILE__ ) );
+			if ( $this->is_thinkery_frontend() ) {
+				wp_enqueue_script(
+					'thinkery',
+					plugins_url( 'thinkery.js', __FILE__ ),
+					array(
+						'jquery',
+						'jquery.cookie',
+						'jquery.highlight',
+						'jquery.tiptip',
+						'jquery.ui-1.10.0.custom',
+						'jquery.thinkeryAutocompleter',
+					),
+					'1.0',
+					true
+				);
+				wp_enqueue_script( 'jquery.cookie', plugins_url( 'js/jquery.cookie.js', __FILE__ ), array( 'jquery' ) );
+				wp_enqueue_script( 'jquery.highlight', plugins_url( 'js/jquery.highlight.js', __FILE__ ), array( 'jquery' ) );
+				wp_enqueue_script( 'jquery.ui-1.10.0.custom', plugins_url( 'js/jquery.ui-1.10.0.custom.js', __FILE__ ), array( 'jquery' ) );
+				wp_enqueue_script( 'jquery.tiptip', plugins_url( 'js/jquery.tiptip.js', __FILE__ ), array( 'jquery' ) );
+				wp_enqueue_script( 'jquery.thinkeryAutocompleter', plugins_url( 'js/jquery.thinkeryAutocompleter.js', __FILE__ ), array( 'jquery' ) );
+				$variables = array(
+					'ajax_url'    => admin_url( 'admin-ajax.php' ),
+					'spinner_url' => admin_url( 'images/wpspin_light.gif' ),
+					'text_undo'   => __( 'Undo' ),
+				);
+				wp_localize_script( 'thinkery', 'wp_thinkery', $variables );
+				wp_enqueue_style( 'thinkery', plugins_url( 'css/thinkery.css', __FILE__ ) );
+			}
+			wp_enqueue_style( 'thinkery-admin', plugins_url( 'css/thinkery-admin.css', __FILE__ ) );
 		}
 	}
 

@@ -15,7 +15,7 @@
 </head>
 
 <body <?php body_class(); ?>>
-	<div id="container" class="container">
+	<div id="container">
 		<header>
 			<div id="logo">
 				<a href="/thinkery/" class="ir">thinkery.me</a>
