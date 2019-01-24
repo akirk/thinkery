@@ -56,7 +56,7 @@ class Thinkery_Frontend {
 		add_filter( 'init', array( $this, 'register_thinkery_sidebar' ) );
 		add_action( 'wp_ajax_thinkery_publish', array( $this, 'frontend_publish_post' ) );
 		add_action( 'wp_ajax_trash_thinkery_post', array( $this, 'trash_thinkery_post' ) );
-		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ) );
+		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_scripts' ), 99 );
 		add_filter( 'body_class', array( $this, 'add_body_class' ) );
 	}
 
@@ -102,7 +102,7 @@ class Thinkery_Frontend {
 					'jquery.ui-1.10.0.custom',
 					'jquery.thinkeryAutocompleter',
 				),
-				'1.0' + time(),
+				'1.0',
 				true
 			);
 			wp_enqueue_script( 'jquery.cookie', plugins_url( 'js/jquery.cookie.js', __FILE__ ), array( 'jquery' ) );
@@ -116,6 +116,7 @@ class Thinkery_Frontend {
 				'text_undo'   => __( 'Undo' ),
 			);
 			wp_localize_script( 'thinkery', 'wp_thinkery', $variables );
+			wp_enqueue_style( 'thinkery', plugins_url( 'css/thinkery.css', __FILE__ ) );
 		}
 	}
 

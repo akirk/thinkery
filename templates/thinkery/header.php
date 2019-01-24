@@ -12,7 +12,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>thinkery</title>
 <?php wp_head(); ?>
-	<link rel="stylesheet" type="text/css" href="<?php echo esc_url( plugins_url( 'css/thinkery.css?' . time(), dirname( dirname( __FILE__ ) ) ) ); ?>" />
 </head>
 
 <body <?php body_class(); ?>>

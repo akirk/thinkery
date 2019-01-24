@@ -1210,3 +1210,18 @@ h1.grey {
 }
 
 @import "print.scss";
+
+@font-face{
+	font-family: thinkery;
+	src: url( font/thinkery.eot );
+	src: url( font/thinkery.eot?#iefix ) format( "embedded-opentype" ),url( font/thinkery.ttf ) format( "truetype" ),url( font/thinkery.woff ) format( "woff" ),url( font/thinkery.svg#thinkery ) format( "svg" );
+	font-weight: 400;
+	font-style: normal;
+}
+
+#menu-posts-thinkery_thing div.wp-menu-image:before,
+#wp-admin-bar-thinkery span.ab-icon.thinkery:before {
+	font-family: thinkery !important;
+	content: "\e600";
+}
+
