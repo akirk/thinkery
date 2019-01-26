@@ -244,7 +244,7 @@ class Thinkery_Frontend {
 		}
 		$this->on_thinkery_frontend = true;
 
-		$page_id = get_query_var( 'page' );
+		$page_id = get_query_var( 'thinkery_tag' );
 
 		$query->set( 'post_status', array( 'publish', 'private', 'draft' ) );
 		$query->set( 'post_type', array( Thinkery_Things::CPT ) );
@@ -253,7 +253,10 @@ class Thinkery_Frontend {
 		$query->set( 'pagename', null );
 
 		$pagename_parts = explode( '/', trim( $wp_query->query['pagename'], '/' ) );
-		if ( isset( $pagename_parts[1] ) ) {
+		if ( intval( $page_id ) ) {
+			$query->set( 'page_id', $page_id );
+			$query->is_singular = true;
+		} elseif ( isset( $pagename_parts[1] ) ) {
 			$this->tag = $pagename_parts[1];
 			$query->set(
 				'tax_query', array(
@@ -265,9 +268,6 @@ class Thinkery_Frontend {
 				)
 			);
 			$query->is_singular = false;
-		} elseif ( $page_id ) {
-			$query->set( 'page_id', $page_id );
-			$query->is_singular = true;
 		} else {
 			$query->is_singular = false;
 		}
