@@ -71,7 +71,7 @@ class Thinkery_Things {
 			'show_in_nav_menus'   => false,
 			'show_in_admin_bar'   => false,
 			'show_in_rest'        => false,
-			'exclude_from_search' => false,
+			'exclude_from_search' => true,
 			'public'              => false,
 			'menu_position'       => 4,
 			'menu_icon'           => null,

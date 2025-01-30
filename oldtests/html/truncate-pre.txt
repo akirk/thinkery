@@ -1,0 +1,39 @@
+--TEST--
+html truncate, protect pre
+--FILE--
+<?php
+include_once __DIR__ . "/../../inc/common.php";
+$html = "Das ist <pre>
+test    xyz
+</pre><b>ein langer        test</b>";
+
+$html2 = str_replace("        ", " ", $html);
+var_dump(Html::truncate($html, 21));
+var_dump(Html::truncate($html, 15));
+var_dump(Html::truncate($html, 26));
+var_dump($html == Html::truncate($html, 194));
+var_dump($html2 == Html::truncate($html, 48));
+var_dump($html2 == Html::truncate($html, 47));
+var_dump($html2 == Html::truncate($html, 46));
+var_dump($html2 == Html::truncate($html, 45));
+var_dump($html2 == Html::truncate($html, 44));
+var_dump(Html::truncate($html, 35));
+?>
+--EXPECT--
+string(32) "Das ist <pre>
+test    xyz
+</pre>"
+string(26) "Das ist <pre>
+test  </pre>"
+string(44) "Das ist <pre>
+test    xyz
+</pre><b>ein l</b>"
+bool(true)
+bool(true)
+bool(true)
+bool(true)
+bool(true)
+bool(true)
+string(53) "Das ist <pre>
+test    xyz
+</pre><b>ein langer tes</b>"

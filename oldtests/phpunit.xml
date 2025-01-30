@@ -1,0 +1,14 @@
+<phpunit colors="true" bootstrap="bootstrap.php">
+	<filter>
+		<whitelist>
+			<directory suffix=".php">../</directory>
+			<exclude>
+				<directory suffix=".php">../inc/libs</directory>
+				<directory suffix=".php">../vendor</directory>
+				<directory suffix=".php">../tests</directory>
+				<directory suffix=".php">../admin</directory>
+				<directory suffix=".php">../inc/import</directory>
+			</exclude>
+		</whitelist>
+	</filter>
+</phpunit>

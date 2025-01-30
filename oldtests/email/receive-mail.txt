@@ -1,0 +1,26 @@
+Return-Path: <alexander@kirk.at>
+X-Original-To: _alex@thinkery.me
+Delivered-To: _alex@thinkery.me
+Received: from localhost (localhost [127.0.0.1])
+	by mail.rebam.com (Postfix) with ESMTP id 614BA3E0022D
+	for <_alex@thinkery.me>; Tue, 23 Oct 2012 17:38:34 +0200 (CEST)
+Received: from mail.rebam.com ([127.0.0.1])
+	by localhost (d.rebam.com [127.0.0.1]) (amavisd-new, port 10024)
+	with ESMTP id ozvvbozV3dzo for <_alex@thinkery.me>;
+	Tue, 23 Oct 2012 17:38:34 +0200 (CEST)
+Received: from akmba.kirk.at (chello080109070158.1.15.vie.surfer.at [80.109.70.158])
+	by mail.rebam.com (Postfix) with ESMTPSA id E02CC3E00003
+	for <_alex@thinkery.me>; Tue, 23 Oct 2012 17:38:33 +0200 (CEST)
+From: Alexander Kirk <alexander@kirk.at>
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Subject: test
+Message-Id: <906A2541-752E-4442-937A-564775E859F0@kirk.at>
+Date: Tue, 23 Oct 2012 17:38:33 +0200
+To: _alex@thinkery.me
+To: _nader@thinkery.me
+Mime-Version: 1.0 (Mac OS X Mail 6.2 \(1499\))
+X-Mailer: Apple Mail (2.1499)
+
+
+lg, alex

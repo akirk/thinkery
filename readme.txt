@@ -2,7 +2,7 @@
 Contributors: akirk, naderc
 Tags: thinkery, oyd, own-your-data
 Requires at least: 5.0
-Tested up to: 5.0.3
+Tested up to: 5.5
 Requires PHP: 5.2.4
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -12,7 +12,7 @@ thinkery.me implemented as a WordPress plugin.
 
 == Description ==
 
-With this plugin you can create your own browser start page. This means you can fully customize it, for example with your favorite search engine bar, your bookmarks or news (fetched through other plugins).
+This plugin can be the future, self-hosted home of your thinkery.
 
 == Installation ==
 
@@ -26,4 +26,4 @@ With this plugin you can create your own browser start page. This means you can 
 
 == Changelog ==
 = 0.1 =
-- Initial Release
+- Initial Release (partial functionality)

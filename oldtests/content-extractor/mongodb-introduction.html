@@ -1,0 +1,2338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+  <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'><title>Introduction to MongoDB &mdash; MongoDB Manual 2.4.9</title><link rel="shortcut icon" href="http://media.mongodb.org/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="index" />
+  <meta name="release" content="2.4.9"/>
+  <meta name="DC.Source" content="https://github.com/mongodb/docs/blob/v2.4/source/core/introduction.txt"/>
+    <link rel="canonical" href="http://docs.mongodb.org/manual/core/introduction" />
+  
+       <link rel="stylesheet" href="../../_static/bootstrap-custom.css" type="text/css" />
+       <link rel="stylesheet" href="../../_static/lib/icomoon.css" type="text/css" />
+       <link rel="stylesheet" href="../../_static/lib/font-awesome.css" type="text/css" />
+       <link rel="stylesheet" href="../../_static/lib/tipsy.css" type="text/css" />
+   <link rel="stylesheet" href="../../_static/mongodb-docs.css" type="text/css" />
+   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+     URL_ROOT:    '../../',
+     VERSION:     '2.4',
+     COLLAPSE_INDEX: false,
+     FILE_SUFFIX: '',
+     HAS_SOURCE:  false,
+    };
+  </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/lib/bootstrap.js"></script>
+    <script type="text/javascript" src="../../_static/lib/jquery.tipsy.js"></script>
+    <script type="text/javascript" src="../../_static/navbar.js"></script>
+      <link rel="search" type="application/opensearchdescription+xml" href="http://docs.mongodb.org/osd.xml" title="MongoDB Help"/>
+<link rel="author" title="About these documents" href="../../about/" />
+<link rel="top" title="MongoDB Manual" href="../../" />
+<link rel="next" title="Install MongoDB" href="../../installation/" />
+<link rel="prev" title="MongoDB Manual Contents" href="../../contents/" />
+      <script type="text/javascript">
+        (function() {
+           var cx = '017213726194841070573:WMX6838984';
+           var gcse = document.createElement('script'); gcse.type = 'text/javascript'; gcse.async = true;
+           gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+           gcse.onload = gcse.onreadystatechange = function() {
+            $(function() {
+              // hack to set a placeholder in google's custom search input
+              var pollInput = window.setInterval(function() {
+                var $input = $('.gsc-input input.gsc-input'),
+                    $div = $('.search-db');
+
+                if ($input.length) {
+                  $input.on('focus', function(e) { $div.addClass('wide').removeClass('narrow'); });
+                  $input.on('blur', function(e) {
+                    if (!$input.val().length) { $div.addClass('narrow').removeClass('wide'); }
+                  });
+                  $input.attr('placeholder', "Search mongodb.org");
+                  window.clearInterval(pollInput);
+                }
+              }, 10);
+            });
+           };
+           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+           })();
+      </script><script type='text/javascript'>
+ var googletag = googletag || {};
+ googletag.cmd = googletag.cmd || [];
+ (function() {
+   var gads = document.createElement('script');
+   gads.async = true;
+   gads.type = 'text/javascript';
+   var useSSL = 'https:' == document.location.protocol;
+   gads.src = (useSSL ? 'https:' : 'http:') +
+               '//www.googletagservices.com/tag/js/gpt.js';
+   var node = document.getElementsByTagName('script')[0];
+   node.parentNode.insertBefore(gads, node);
+ })();
+</script>
+
+<script type='text/javascript'>
+ googletag.cmd.push(function() {
+   googletag.defineSlot('/40039723/Docs', [[243, 202], [293, 244]],
+                        'div-gpt-ad-1389988495352-0').addService(googletag.pubads());
+   googletag.pubads().enableSingleRequest();
+   googletag.enableServices();
+ });
+</script></head>
+<body>
+    <script>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+      new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+      '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      })(window,document,'script','dataLayer','GTM-RHMS');
+    </script>
+    <header id="header-db" class="row" role="navigation">
+      <div class="header-content">
+        <a class="fa fa-bars expand-toc-icon pull-left" href="#"></a>
+           <div class="logo pull-left">
+             <a href="http://www.mongodb.org/">
+               <img src="http://media.mongodb.org.s3.amazonaws.com/logo-mongodb-header.png", alt="MongoDB.org" />
+             </a>
+           </div>
+        
+        <div>
+          <div class="search-db narrow pull-right"><gcse:searchbox-only resultsUrl="http://docs.mongodb.org/manual/search/" queryParameterName="query"></gcse:searchbox-only></div>
+          
+          <div class="nav-items pull-right">
+               <a href="http://try.mongodb.org/">Try it Out</a>
+               <a href="http://www.mongodb.org/downloads">Downloads</a>
+               <a href="http://www.mongodb.org/get-involved">Community</a>
+               <a href="http://blog.mongodb.org">Blog</a>
+            
+          </div>
+        </div>
+      </div>
+    </header>
+
+  <aside class="sidebar">
+       
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper" style="display: none;"><h3>
+  <a class="index-link" href="../../">MongoDB Manual</a>
+  
+    
+  
+    
+      <a class="version pull-right" href="">2.4 (current)</a>
+    
+  
+    
+  
+</h3>
+
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Introduction</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../installation/">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/install-on-linux/">Install on Linux</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/install-mongodb-on-red-hat-centos-or-fedora-linux/">Install on Red Hat Enterprise Linux</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/install-mongodb-on-ubuntu/">Install on Ubuntu</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/install-mongodb-on-debian/">Install on Debian</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/install-mongodb-on-linux/">Install on Other Linux Systems</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/install-mongodb-on-os-x/">Install MongoDB on OS X</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/install-mongodb-on-windows/">Install MongoDB on Windows</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/install-mongodb-enterprise/">Install MongoDB Enterprise</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/getting-started/">Getting Started with MongoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorial/generate-test-data/">Generate Test Data</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../crud/">MongoDB CRUD Operations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../crud-introduction/">MongoDB CRUD Introduction</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../crud/">MongoDB CRUD Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../read-operations/">Read Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../read-operations-introduction/">Read Operations Overview</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../cursors/">Cursors</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../query-optimization/">Query Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../query-plans/">Query Plans</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../distributed-queries/">Distributed Queries</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../write-operations/">Write Operations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../write-operations-introduction/">Write Operations Overview</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../write-concern/">Write Concern</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../distributed-write-operations/">Distributed Write Operations</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../write-performance/">Write Operation Performance</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../bulk-inserts/">Bulk Inserts in MongoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../record-padding/">Record Padding</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/crud/">MongoDB CRUD Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/insert-documents/">Insert Documents</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/query-documents/">Query Documents</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/project-fields-from-query-results/">Limit Fields to Return from a Query</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/iterate-a-cursor/">Iterate a Cursor in the <tt class="docutils literal"><span class="pre">mongo</span></tt> Shell</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/analyze-query-plan/">Analyze Query Performance</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/modify-documents/">Modify Documents</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/remove-documents/">Remove Documents</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/perform-two-phase-commits/">Perform Two Phase Commits</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/create-tailable-cursor/">Create Tailable Cursor</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/isolate-sequence-of-operations/">Isolate Sequence of Operations</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/create-an-auto-incrementing-field/">Create an Auto-Incrementing Sequence Field</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/limit-number-of-elements-in-updated-array/">Limit Number of Elements in an Array after an Update</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/crud/">MongoDB CRUD Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/write-concern/">Write Concern Reference</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/sql-comparison/">SQL to MongoDB Mapping Chart</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/bios-example-collection/">The <tt class="docutils literal"><span class="pre">bios</span></tt> Example Collection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../applications/drivers/">MongoDB Drivers and Client Libraries</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../data-modeling/">Data Models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../data-modeling-introduction/">Data Modeling Introduction</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../data-models/">Data Modeling Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../data-model-design/">Data Model Design</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../data-model-operations/">Operational Factors and Data Models</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../gridfs/">GridFS</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/data-models/">Data Model Examples and Patterns</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../applications/data-models-relationships/">Model Relationships Between Documents</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-embedded-one-to-one-relationships-between-documents/">Model One-to-One Relationships with Embedded Documents</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-embedded-one-to-many-relationships-between-documents/">Model One-to-Many Relationships with Embedded Documents</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-referenced-one-to-many-relationships-between-documents/">Model One-to-Many Relationships with Document References</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../applications/data-models-tree-structures/">Model Tree Structures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-tree-structures-with-parent-references/">Model Tree Structures with Parent References</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-tree-structures-with-child-references/">Model Tree Structures with Child References</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-tree-structures-with-ancestors-array/">Model Tree Structures with an Array of Ancestors</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-tree-structures-with-materialized-paths/">Model Tree Structures with Materialized Paths</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-tree-structures-with-nested-sets/">Model Tree Structures with Nested Sets</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../applications/data-models-applications/">Model Specific Application Contexts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-data-for-atomic-operations/">Model Data for Atomic Operations</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/model-data-for-keyword-search/">Model Data to Support Keyword Search</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/data-models/">Data Model Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../document/">Documents</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/database-references/">Database References</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/gridfs/">GridFS Reference</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/object-id/">ObjectId</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/bson-types/">BSON Types</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../administration/">Administration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../administration/">Administration Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/strategy/">Operational Strategies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../backups/">MongoDB Backup Methods</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../administration/monitoring/">Monitoring for MongoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../administration/configuration/">Run-time Database Configuration</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../import-export/">Import and Export MongoDB Data</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../administration/production-notes/">Production Notes</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/data-management/">Data Management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../data-center-awareness/">Data Center Awareness</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../operational-segregation/">Operational Segregation in MongoDB Deployments</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../capped-collections/">Capped Collections</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/expire-data/">Expire Data from Collections by Setting TTL</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/optimization/">Optimization Strategies for MongoDB</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/evaluate-operation-performance/">Evaluate Performance of Current Operations</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/use-capped-collections-for-fast-writes-and-reads/">Use Capped Collections for Fast Writes and Reads</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/optimize-query-performance-with-indexes-and-projections/">Optimize Query Performance</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../applications/design-notes/">Design Notes</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/tutorials/">Administration Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/maintenance/">Configuration, Maintenance, and Analysis</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/use-database-commands/">Use Database Commands</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/manage-mongodb-processes/">Manage <tt class="docutils literal"><span class="pre">mongod</span></tt> Processes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/manage-the-database-profiler/">Analyze Performance of Database Operations</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/monitor-with-snmp/">Monitor MongoDB with SNMP</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/rotate-log-files/">Rotate Log Files</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/manage-journaling/">Manage Journaling</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/store-javascript-function-on-server/">Store a JavaScript Function on the Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/upgrade-revision/">Upgrade to the Latest Revision of MongoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/">MongoDB Tutorials</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/backup/">Backup and Recovery</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/backup-with-filesystem-snapshots/">Backup and Restore with Filesystem Snapshots</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/restore-replica-set-from-backup/">Restore a Replica Set from MongoDB Backups</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/backup-with-mongodump/">Back Up and Restore with MongoDB Tools</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../administration/backup-sharded-clusters/">Backup and Restore Sharded Clusters</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../tutorial/backup-small-sharded-cluster-with-mongodump/">Backup a Small Sharded Cluster with <tt class="docutils literal"><span class="pre">mongodump</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../tutorial/backup-sharded-cluster-with-filesystem-snapshots/">Backup a Sharded Cluster with Filesystem Snapshots</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../tutorial/backup-sharded-cluster-with-database-dumps/">Backup a Sharded Cluster with Database Dumps</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../tutorial/schedule-backup-window-for-sharded-clusters/">Schedule Backup Window for Sharded Clusters</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../tutorial/restore-single-shard/">Restore a Single Shard</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../tutorial/restore-sharded-cluster/">Restore a Sharded Cluster</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/recover-data-following-unexpected-shutdown/">Recover Data after an Unexpected Shutdown</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/scripting/">MongoDB Scripting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../server-side-javascript/">Server-side JavaScript</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../shell-types/">Data Types in the <tt class="docutils literal"><span class="pre">mongo</span></tt> Shell</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/write-scripts-for-the-mongo-shell/">Write Scripts for the <tt class="docutils literal"><span class="pre">mongo</span></tt> Shell</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/getting-started-with-the-mongo-shell/">Getting Started with the <tt class="docutils literal"><span class="pre">mongo</span></tt> Shell</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/access-mongo-shell-help/">Access the <tt class="docutils literal"><span class="pre">mongo</span></tt> Shell Help Information</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/mongo-shell/"><tt class="docutils literal"><span class="pre">mongo</span></tt> Shell Quick Reference</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/administration/">Administration Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/ulimit/">UNIX <tt class="docutils literal"><span class="pre">ulimit</span></tt> Settings</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/system-collections/">System Collections</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/mongodb-extended-json/">MongoDB Extended JSON</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/database-profiler/">Database Profiler Output</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../journaling/">Journaling Mechanics</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/exit-codes/">Exit Codes and Statuses</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../security/">Security</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../security-introduction/">Security Introduction</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../security/">Security Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../access-control/">Access Control</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../inter-process-authentication/">Inter-Process Authentication</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sharded-cluster-security/">Sharded Cluster Security</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../security-network/">Network Exposure and Security</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../security-interface/">Security and MongoDB API Interfaces</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/security/">Security Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/security-network/">Network Security Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-linux-iptables-firewall/">Configure Linux <tt class="docutils literal"><span class="pre">iptables</span></tt> Firewall for MongoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-windows-netsh-firewall/">Configure Windows <tt class="docutils literal"><span class="pre">netsh</span></tt> Firewall for MongoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-ssl/">Connect to MongoDB with SSL</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/security-access-control/">Access Control Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/enable-authentication/">Enable Authentication</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/add-user-administrator/">Create a User Administrator</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/add-user-to-database/">Add a User to a Database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/change-user-password/">Change a User&#8217;s Password</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/generate-key-file/">Generate a Key File</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/control-access-to-mongodb-with-kerberos-authentication/">Deploy MongoDB with Kerberos Authentication</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/create-a-vulnerability-report/">Create a Vulnerability Report</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/security/">Security Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/user-privileges/">User Privilege Roles in MongoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/privilege-documents/"><tt class="docutils literal"><span class="pre">system.users</span></tt> Privilege Documents</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/default-mongodb-port/">Default MongoDB Port</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../release-notes/security/">Security Release Notes</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../aggregation/">Aggregation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../aggregation-introduction/">Aggregation Introduction</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../aggregation/">Aggregation Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation-pipeline/">Aggregation Pipeline</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../map-reduce/">Map-Reduce</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../single-purpose-aggregation/">Single Purpose Aggregation Operations</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../aggregation-mechanics/">Aggregation Mechanics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../aggregation-pipeline-optimization/">Aggregation Pipeline Optimization</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../aggregation-pipeline-limits/">Aggregation Pipeline Limits</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../aggregation-pipeline-sharded-collections/">Aggregation Pipeline and Sharded Collections</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../map-reduce-sharded-collections/">Map-Reduce and Sharded Collections</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../map-reduce-concurrency/">Map Reduce Concurrency</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../applications/aggregation/">Aggregation Examples</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/aggregation-zip-code-data-set/">Aggregation with the Zip Code Data Set</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/aggregation-with-user-preference-data/">Aggregation with User Preference Data</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/map-reduce-examples/">Map-Reduce Examples</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/perform-incremental-map-reduce/">Perform Incremental Map-Reduce</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/troubleshoot-map-function/">Troubleshoot the Map Function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/troubleshoot-reduce-function/">Troubleshoot the Reduce Function</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/aggregation/">Aggregation Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/aggregation-commands-comparison/">Aggregation Commands Comparison</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/sql-aggregation-comparison/">SQL to Aggregation Mapping Chart</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/operator/aggregation/interface/">Aggregation Interfaces</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../indexes/">Indexes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../indexes-introduction/">Index Introduction</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../indexes/">Index Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../index-types/">Index Types</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../index-single/">Single Field Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index-compound/">Compound Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index-multikey/">Multikey Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../applications/geospatial-indexes/">Geospatial Indexes and Queries</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../2dsphere/"><tt class="docutils literal"><span class="pre">2dsphere</span></tt> Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../2d/"><tt class="docutils literal"><span class="pre">2d</span></tt> Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../geohaystack/">Haystack Indexes</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../geospatial-indexes/"><tt class="docutils literal"><span class="pre">2d</span></tt> Index Internals</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index-text/">Text Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index-hashed/">Hashed Index</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index-properties/">Index Properties</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../index-ttl/">TTL Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../index-unique/">Unique Indexes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../index-sparse/">Sparse Indexes</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../index-creation/">Index Creation</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/indexes/">Indexing Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/indexes-creation/">Index Creation Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/create-an-index/">Create an Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/create-a-compound-index/">Create a Compound Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/create-a-unique-index/">Create a Unique Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/create-a-sparse-index/">Create a Sparse Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/create-a-hashed-index/">Create a Hashed Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/build-indexes-on-replica-sets/">Build Indexes on Replica Sets</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/build-indexes-in-the-background/">Build Indexes in the Background</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/roll-back-to-v1.8-index/">Build Old Style Indexes</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/indexes-management/">Index Management Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/remove-indexes/">Remove Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/rebuild-indexes/">Rebuild Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/manage-in-progress-indexing-operations/">Manage In-Progress Index Creation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/list-indexes/">Return a List of All Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/measure-index-use/">Measure Index Use</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/indexes-geo/">Geospatial Index Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/build-a-2dsphere-index/">Create a <tt class="docutils literal"><span class="pre">2dsphere</span></tt> Index</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/query-a-2dsphere-index/">Query a <tt class="docutils literal"><span class="pre">2dsphere</span></tt> Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/build-a-2d-index/">Create a <tt class="docutils literal"><span class="pre">2d</span></tt> Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/query-a-2d-index/">Query a <tt class="docutils literal"><span class="pre">2d</span></tt> Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/build-a-geohaystack-index/">Create a Haystack Index</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/query-a-geohaystack-index/">Query a Haystack Index</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/calculate-distances-using-spherical-geometry-with-2d-geospatial-indexes/">Calculate Distance Using Spherical Geometry</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/indexes-text/">Text Search Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/enable-text-search/">Enable Text Search</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/create-text-index-on-multiple-fields/">Create a <tt class="docutils literal"><span class="pre">text</span></tt> Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/search-for-text/">Search String Content for Text</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/specify-language-for-text-index/">Specify a Language for Text Index</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/avoid-text-index-name-limit/">Create <tt class="docutils literal"><span class="pre">text</span></tt> Index with Long Name</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/control-results-of-text-search/">Control Search Results with Weights</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/limit-number-of-items-scanned-for-text-search/">Limit the Number of Entries Scanned</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/return-text-queries-using-only-text-index/">Create <tt class="docutils literal"><span class="pre">text</span></tt> Index to Satisfy the <tt class="docutils literal"><span class="pre">filter</span></tt> Component of Text Search</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../applications/indexes/">Indexing Strategies</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/create-indexes-to-support-queries/">Create Indexes to Support Your Queries</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/sort-results-with-indexes/">Use Indexes to Sort Query Results</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/ensure-indexes-fit-ram/">Ensure Indexes Fit in RAM</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/create-queries-that-ensure-selectivity/">Create Queries that Ensure Selectivity</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/indexes/">Indexing Reference</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../replication/">Replication</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../replication-introduction/">Replication Introduction</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../replication/">Replication Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../replica-set-members/">Replica Set Members</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-primary/">Replica Set Primary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-secondary/">Replica Set Secondary Members</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../replica-set-priority-0-member/">Priority 0 Replica Set Members</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../replica-set-hidden-member/">Hidden Replica Set Members</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../replica-set-delayed-member/">Delayed Replica Set Members</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-arbiter/">Replica Set Arbiter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../replica-set-architectures/">Replica Set Deployment Architectures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-architecture-three-members/">Three Member Replica Sets</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-architecture-four-members/">Replica Sets with Four or More Members</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-architecture-geographically-distributed/">Geographically Distributed Replica Sets</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../replica-set-high-availability/">Replica Set High Availability</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-elections/">Replica Set Elections</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-rollbacks/">Rollbacks During Replica Set Failover</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../applications/replication/">Replica Set Read and Write Semantics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-write-concern/">Write Concern for Replica Sets</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../read-preference/">Read Preference</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../read-preference-mechanics/">Read Preference Processes</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../replication-process/">Replication Processes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-oplog/">Replica Set Oplog</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../replica-set-sync/">Replica Set Data Synchronization</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../master-slave/">Master Slave Replication</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/replica-sets/">Replica Set Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/replica-set-deployment/">Replica Set Deployment Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/deploy-replica-set/">Deploy a Replica Set</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/deploy-replica-set-for-testing/">Deploy a Replica Set for Testing and Development</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/deploy-geographically-distributed-replica-set/">Deploy a Geographically Redundant Replica Set</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/add-replica-set-arbiter/">Add an Arbiter to Replica Set</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/convert-standalone-to-replica-set/">Convert a Standalone to a Replica Set</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/expand-replica-set/">Add Members to a Replica Set</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/remove-replica-set-member/">Remove Members from Replica Set</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/replace-replica-set-member/">Replace a Replica Set Member</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/replica-set-member-configuration/">Member Configuration Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/adjust-replica-set-member-priority/">Adjust Priority for Replica Set Member</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-secondary-only-replica-set-member/">Prevent Secondary from Becoming Primary</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-a-hidden-replica-set-member/">Configure a Hidden Replica Set Member</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-a-delayed-replica-set-member/">Configure a Delayed Replica Set Member</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-a-non-voting-replica-set-member/">Configure Non-Voting Replica Set Member</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/convert-secondary-into-arbiter/">Convert a Secondary to an Arbiter</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/replica-set-maintenance/">Replica Set Maintenance Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/change-oplog-size/">Change the Size of the Oplog</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/force-member-to-be-primary/">Force a Member to Become Primary</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/resync-replica-set-member/">Resync a Member of a Replica Set</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-replica-set-tag-sets/">Configure Replica Set Tag Sets</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/reconfigure-replica-set-with-unavailable-members/">Reconfigure a Replica Set with Unavailable Members</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/manage-chained-replication/">Manage Chained Replication</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/change-hostnames-in-a-replica-set/">Change Hostnames in a Replica Set</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-replica-set-secondary-sync-target/">Configure a Secondary&#8217;s Sync Target</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/troubleshoot-replica-sets/">Troubleshoot Replica Sets</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/replication/">Replication Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/replica-configuration/">Replica Set Configuration</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/local-database/">The <tt class="docutils literal"><span class="pre">local</span></tt> Database</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/replica-states/">Replica Set Member States</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/read-preference/">Read Preference Reference</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../sharding/">Sharding</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../sharding-introduction/">Sharding Introduction</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../sharding/">Sharding Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../sharded-cluster-components/">Sharded Cluster Components</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sharded-cluster-shards/">Shards</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../sharded-cluster-config-servers/">Config Servers</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sharded-cluster-architectures/">Sharded Cluster Architectures</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sharded-cluster-requirements/">Sharded Cluster Requirements</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../sharded-cluster-architectures-production/">Production Cluster Architecture</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../sharded-cluster-architectures-test/">Sharded Cluster Test Architecture</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sharded-cluster-operations/">Sharded Cluster Behavior</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sharding-shard-key/">Shard Keys</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../sharded-cluster-high-availability/">Sharded Cluster High Availability</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../sharded-cluster-query-router/">Sharded Cluster Query Routing</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../sharded-cluster-mechanics/">Sharding Mechanics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../sharding-balancing/">Sharded Collection Balancing</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../sharding-chunk-migration/">Chunk Migration Across Shards</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../sharding-chunk-splitting/">Chunk Splits in a Sharded Cluster</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../sharding-shard-key-indexes/">Shard Key Indexes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../sharded-cluster-metadata/">Sharded Cluster Metadata</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../administration/sharded-clusters/">Sharded Cluster Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/sharded-cluster-deployment/">Sharded Cluster Deployment Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/deploy-shard-cluster/">Deploy a Sharded Cluster</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/choose-a-shard-key/">Considerations for Selecting Shard Keys</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/shard-collection-with-a-hashed-shard-key/">Shard a Collection Using a Hashed Shard Key</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/enable-authentication-in-sharded-cluster/">Enable Authentication in a Sharded Cluster</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/add-shards-to-shard-cluster/">Add Shards to a Cluster</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/deploy-config-servers/">Deploy Three Config Servers for Production Deployments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/convert-replica-set-to-replicated-shard-cluster/">Convert a Replica Set to a Replicated Sharded Cluster</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/convert-sharded-cluster-to-replica-set/">Convert Sharded Cluster to Replica Set</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/sharded-cluster-maintenance/">Sharded Cluster Maintenance Tutorials</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/view-sharded-cluster-configuration/">View Cluster Configuration</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/migrate-config-servers-with-same-hostname/">Migrate Config Servers with the Same Hostname</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/migrate-config-servers-with-different-hostnames/">Migrate Config Servers with Different Hostnames</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/replace-config-server/">Replace a Config Server</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/migrate-sharded-cluster-to-new-hardware/">Migrate a Sharded Cluster to Different Hardware</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/backup-sharded-cluster-metadata/">Backup Cluster Metadata</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/configure-sharded-cluster-balancer/">Configure Behavior of Balancer Process in Sharded Clusters</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/manage-sharded-cluster-balancer/">Manage Sharded Cluster Balancer</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/remove-shards-from-cluster/">Remove Shards from an Existing Sharded Cluster</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../administration/sharded-cluster-data/">Sharded Cluster Data Management</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/create-chunks-in-sharded-cluster/">Create Chunks in a Sharded Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/split-chunks-in-sharded-cluster/">Split Chunks in a Sharded Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/migrate-chunks-in-sharded-cluster/">Migrate Chunks in a Sharded Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/modify-chunk-size-in-sharded-cluster/">Modify Chunk Size in a Sharded Cluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tag-aware-sharding/">Tag Aware Sharding</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/administer-shard-tags/">Manage Shard Tags</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/enforce-unique-keys-for-sharded-collections/">Enforce Unique Keys for Sharded Collections</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../tutorial/shard-gridfs-data/">Shard GridFS Data Store</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorial/troubleshoot-sharded-clusters/">Troubleshoot Sharded Clusters</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/sharding/">Sharding Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/config-database/">Config Database</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../faq/">Frequently Asked Questions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../faq/fundamentals/">FAQ: MongoDB Fundamentals</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq/developers/">FAQ: MongoDB for Application Developers</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq/mongo/">FAQ: The <tt class="docutils literal"><span class="pre">mongo</span></tt> Shell</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq/concurrency/">FAQ: Concurrency</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq/sharding/">FAQ: Sharding with MongoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq/replica-sets/">FAQ: Replica Sets and Replication in MongoDB</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq/storage/">FAQ: MongoDB Storage</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq/indexes/">FAQ: Indexes</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../faq/diagnostics/">FAQ: MongoDB Diagnostics</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../reference/">Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/operator/">Operators</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/operator/query/">Query and Projection Operators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/query-comparison/">Comparison Query Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/gt/">$gt</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/gte/">$gte</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/in/">$in</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/lt/">$lt</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/lte/">$lte</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/ne/">$ne</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/nin/">$nin</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/query-logical/">Logical Query Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/or/">$or</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/and/">$and</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/not/">$not</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/nor/">$nor</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/query-element/">Element Query Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/exists/">$exists</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/type/">$type</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/query-evaluation/">Evaluation Query Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/mod/">$mod</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/regex/">$regex</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/where/">$where</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/query-geospatial/">Geospatial Query Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/geoWithin/">$geoWithin</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/geoIntersects/">$geoIntersects</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/near/">$near</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/nearSphere/">$nearSphere</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/geometry/">$geometry</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/maxDistance/">$maxDistance</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/center/">$center</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/centerSphere/">$centerSphere</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/box/">$box</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/polygon/">$polygon</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/uniqueDocs/">$uniqueDocs</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/query-array/">Query Operator Array</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/all/">$all</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/elemMatch/">$elemMatch (query)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/query/size/">$size</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/projection/">Projection Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/projection/positional/">$ (projection)</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/projection/elemMatch/">$elemMatch (projection)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/projection/slice/">$slice (projection)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/operator/update/">Update Operators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/update-field/">Field Update Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/inc/">$inc</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/rename/">$rename</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/setOnInsert/">$setOnInsert</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/set/">$set</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/unset/">$unset</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/update-array/">Array Update Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/positional/">$ (query)</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/addToSet/">$addToSet</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/pop/">$pop</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/pullAll/">$pullAll</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/pull/">$pull</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/pushAll/">$pushAll</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/push/">$push</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/each/">$each</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/slice/">$slice</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/sort/">$sort</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/update-bitwise/">Bitwise Update Operator</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/bit/">$bit</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/update-isolation/">Isolation Update Operator</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/update/isolated/">$isolated</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/operator/aggregation/">Aggregation Framework Operators</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/aggregation-pipeline/">Pipeline Aggregation Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/project/">$project (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/match/">$match (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/limit/">$limit (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/skip/">$skip (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/unwind/">$unwind (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/group/">$group (aggregation)</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/sort/">$sort (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/geoNear/">$geoNear (aggregation)</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/aggregation-group/">Group Aggregation Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/addToSet/">$addToSet (aggregation)</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/first/">$first (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/last/">$last (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/max/">$max (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/min/">$min (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/avg/">$avg (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/push/">$push (aggregation)</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/sum/">$sum (aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/aggregation-boolean/">Boolean Aggregation Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/and/">$and (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/or/">$or (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/not/">$not (aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/aggregation-comparison/">Comparison Aggregation Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/cmp/">$cmp (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/eq/">$eq (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/gt/">$gt (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/gte/">$gte (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/lt/">$lt (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/lte/">$lte (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/ne/">$ne (aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/aggregation-arithmetic/">Arithmetic Aggregation Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/add/">$add (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/divide/">$divide (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/mod/">$mod (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/multiply/">$multiply (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/subtract/">$subtract (aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/aggregation-string/">String Aggregation Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/concat/">$concat (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/strcasecmp/">$strcasecmp (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/substr/">$substr (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/toLower/">$toLower (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/toUpper/">$toUpper (aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/aggregation-date/">Date Aggregation Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/dayOfYear/">$dayOfYear (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/dayOfMonth/">$dayOfMonth (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/dayOfWeek/">$dayOfWeek (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/year/">$year (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/month/">$month (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/week/">$week (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/hour/">$hour (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/minute/">$minute (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/second/">$second (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/millisecond/">$millisecond (aggregation)</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/aggregation-conditional/">Conditional Aggregation Operators</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/cond/">$cond (aggregation)</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../reference/operator/aggregation/ifNull/">$ifNull (aggregation)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/operator/query-modifier/">Query Modifiers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/comment/">$comment</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/explain/">$explain</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/hint/">$hint</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/maxScan/">$maxScan</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/max/">$max</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/min/">$min</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/orderby/">$orderby</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/returnKey/">$returnKey</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/showDiskLoc/">$showDiskLoc</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/snapshot/">$snapshot</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/query/">$query</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/operator/meta/natural/">$natural</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/command/">Database Commands</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-aggregation/">Aggregation Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/aggregate/">aggregate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/count/">count</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/distinct/">distinct</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/group/">group</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/mapReduce/">mapReduce</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-geospatial/">Geospatial Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/geoNear/">geoNear</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/geoSearch/">geoSearch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/geoWalk/">geoWalk</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-crud/">Query and Write Operation Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/findAndModify/">findAndModify</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/text/">text</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/getLastError/">getLastError</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/getPrevError/">getPrevError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/resetError/">resetError</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/eval/">eval</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-authentication/">Authentication Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/logout/">logout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/authenticate/">authenticate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/copydbgetnonce/">copydbgetnonce</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/getnonce/">getnonce</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-replication/">Replication Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetFreeze/">replSetFreeze</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetGetStatus/">replSetGetStatus</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetInitiate/">replSetInitiate</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetMaintenance/">replSetMaintenance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetReconfig/">replSetReconfig</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetStepDown/">replSetStepDown</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetSyncFrom/">replSetSyncFrom</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/resync/">resync</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/applyOps/">applyOps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/isMaster/">isMaster</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/getoptime/">getoptime</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-sharding/">Sharding Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/flushRouterConfig/">flushRouterConfig</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/addShard/">addShard</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/checkShardingIndex/">checkShardingIndex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/enableSharding/">enableSharding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/listShards/">listShards</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/removeShard/">removeShard</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/getShardMap/">getShardMap</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/getShardVersion/">getShardVersion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/setShardVersion/">setShardVersion</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/shardCollection/">shardCollection</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/shardingState/">shardingState</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/unsetSharding/">unsetSharding</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/split/">split</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/splitChunk/">splitChunk</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/splitVector/">splitVector</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/medianKey/">medianKey</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/moveChunk/">moveChunk</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/movePrimary/">movePrimary</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/isdbgrid/">isdbgrid</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-administration/">Administration Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/renameCollection/">renameCollection</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/copydb/">copydb</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/dropDatabase/">dropDatabase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/drop/">drop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/create/">create</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/clone/">clone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/cloneCollection/">cloneCollection</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/cloneCollectionAsCapped/">cloneCollectionAsCapped</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/closeAllDatabases/">closeAllDatabases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/convertToCapped/">convertToCapped</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/filemd5/">filemd5</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/dropIndexes/">dropIndexes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/fsync/">fsync</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/clean/">clean</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/connPoolSync/">connPoolSync</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/compact/">compact</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/collMod/">collMod</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/reIndex/">reIndex</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/setParameter/">setParameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/getParameter/">getParameter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/repairDatabase/">repairDatabase</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/touch/">touch</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/shutdown/">shutdown</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/logRotate/">logRotate</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-diagnostic/">Diagnostic Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/listDatabases/">listDatabases</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/dbHash/">dbHash</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/driverOIDTest/">driverOIDTest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/listCommands/">listCommands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/availableQueryOptions/">availableQueryOptions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/buildInfo/">buildInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/collStats/">collStats</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/connPoolStats/">connPoolStats</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/dbStats/">dbStats</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/cursorInfo/">cursorInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/dataSize/">dataSize</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/diagLogging/">diagLogging</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/getCmdLineOpts/">getCmdLineOpts</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/netstat/">netstat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/ping/">ping</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/profile/">profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/validate/">validate</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/top/">top</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/indexStats/">indexStats</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/whatsmyuri/">whatsmyuri</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/getLog/">getLog</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/hostInfo/">hostInfo</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/serverStatus/">serverStatus</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/features/">features</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/isSelf/">isSelf</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-internal/">Internal Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/handshake/">handshake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/recvChunkAbort/">recvChunkAbort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/recvChunkCommit/">recvChunkCommit</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/recvChunkStart/">recvChunkStart</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/recvChunkStatus/">recvChunkStatus</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetFresh/">replSetFresh</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/mapreduce.shardedfinish/">mapreduce.shardedfinish</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/transferMods/">transferMods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetHeartbeat/">replSetHeartbeat</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetGetRBID/">replSetGetRBID</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/migrateClone/">migrateClone</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetElect/">replSetElect</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/writeBacksQueued/">writeBacksQueued</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/writebacklisten/">writebacklisten</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/command/nav-testing/">Testing Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/testDistLockWithSkew/">testDistLockWithSkew</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/testDistLockWithSyncCluster/">testDistLockWithSyncCluster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/captrunc/">captrunc</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/emptycapped/">emptycapped</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/godinsert/">godinsert</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/hashBSONElement/">_hashBSONElement</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/journalLatencyTest/">journalLatencyTest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/sleep/">sleep</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/replSetTest/">replSetTest</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/forceerror/">forceerror</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/skewClockCommand/">skewClockCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/command/configureFailPoint/">configureFailPoint</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/method/"><tt class="docutils literal"><span class="pre">mongo</span></tt> Shell Methods</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/method/js-collection/">Collection Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.aggregate/">db.collection.aggregate()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.count/">db.collection.count()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.copyTo/">db.collection.copyTo()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.createIndex/">db.collection.createIndex()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.getIndexStats/">db.collection.getIndexStats()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.indexStats/">db.collection.indexStats()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.dataSize/">db.collection.dataSize()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.distinct/">db.collection.distinct()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.drop/">db.collection.drop()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.dropIndex/">db.collection.dropIndex()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.dropIndexes/">db.collection.dropIndexes()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.ensureIndex/">db.collection.ensureIndex()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.find/">db.collection.find()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.findAndModify/">db.collection.findAndModify()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.findOne/">db.collection.findOne()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.getIndexes/">db.collection.getIndexes()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.getShardDistribution/">db.collection.getShardDistribution()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.getShardVersion/">db.collection.getShardVersion()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.group/">db.collection.group()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.insert/">db.collection.insert()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.isCapped/">db.collection.isCapped()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.mapReduce/">db.collection.mapReduce()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.reIndex/">db.collection.reIndex()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.remove/">db.collection.remove()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.renameCollection/">db.collection.renameCollection()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.save/">db.collection.save()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.stats/">db.collection.stats()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.storageSize/">db.collection.storageSize()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.totalSize/">db.collection.totalSize()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.totalIndexSize/">db.collection.totalIndexSize()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.update/">db.collection.update()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.collection.validate/">db.collection.validate()</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/method/js-cursor/">Cursor Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.addOption/">cursor.addOption()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.batchSize/">cursor.batchSize()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.count/">cursor.count()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.explain/">cursor.explain()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.forEach/">cursor.forEach()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.hasNext/">cursor.hasNext()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.hint/">cursor.hint()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.limit/">cursor.limit()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.map/">cursor.map()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.max/">cursor.max()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.min/">cursor.min()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.next/">cursor.next()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.objsLeftInBatch/">cursor.objsLeftInBatch()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.readPref/">cursor.readPref()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.showDiskLoc/">cursor.showDiskLoc()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.size/">cursor.size()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.skip/">cursor.skip()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.snapshot/">cursor.snapshot()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.sort/">cursor.sort()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cursor.toArray/">cursor.toArray()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/method/js-database/">Database Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.addUser/">db.addUser()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.auth/">db.auth()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.changeUserPassword/">db.changeUserPassword()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.cloneCollection/">db.cloneCollection()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.cloneDatabase/">db.cloneDatabase()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.commandHelp/">db.commandHelp()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.copyDatabase/">db.copyDatabase()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.createCollection/">db.createCollection()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.currentOp/">db.currentOp()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.dropDatabase/">db.dropDatabase()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.eval/">db.eval()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.fsyncLock/">db.fsyncLock()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.fsyncUnlock/">db.fsyncUnlock()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getCollection/">db.getCollection()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getCollectionNames/">db.getCollectionNames()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getLastError/">db.getLastError()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getLastErrorObj/">db.getLastErrorObj()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getMongo/">db.getMongo()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getName/">db.getName()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getPrevError/">db.getPrevError()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getProfilingLevel/">db.getProfilingLevel()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getProfilingStatus/">db.getProfilingStatus()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getReplicationInfo/">db.getReplicationInfo()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.getSiblingDB/">db.getSiblingDB()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.help/">db.help()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.hostInfo/">db.hostInfo()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.isMaster/">db.isMaster()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.killOp/">db.killOp()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.listCommands/">db.listCommands()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.loadServerScripts/">db.loadServerScripts()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.logout/">db.logout()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.printCollectionStats/">db.printCollectionStats()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.printReplicationInfo/">db.printReplicationInfo()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.printShardingStatus/">db.printShardingStatus()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.printSlaveReplicationInfo/">db.printSlaveReplicationInfo()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.removeUser/">db.removeUser()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.repairDatabase/">db.repairDatabase()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.resetError/">db.resetError()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.runCommand/">db.runCommand()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.serverBuildInfo/">db.serverBuildInfo()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.serverStatus/">db.serverStatus()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.setProfilingLevel/">db.setProfilingLevel()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.shutdownServer/">db.shutdownServer()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.stats/">db.stats()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/db.version/">db.version()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/method/js-replication/">Replication Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.add/">rs.add()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.addArb/">rs.addArb()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.conf/">rs.conf()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.freeze/">rs.freeze()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.help/">rs.help()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.initiate/">rs.initiate()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.reconfig/">rs.reconfig()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.remove/">rs.remove()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.slaveOk/">rs.slaveOk()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.status/">rs.status()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.stepDown/">rs.stepDown()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rs.syncFrom/">rs.syncFrom()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/method/js-sharding/">Sharding Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh._adminCommand/">sh._adminCommand()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh._checkFullName/">sh._checkFullName()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh._checkMongos/">sh._checkMongos()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh._lastMigration/">sh._lastMigration()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.addShard/">sh.addShard()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.addShardTag/">sh.addShardTag()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.addTagRange/">sh.addTagRange()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.disableBalancing/">sh.disableBalancing()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.enableBalancing/">sh.enableBalancing()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.enableSharding/">sh.enableSharding()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.getBalancerHost/">sh.getBalancerHost()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.getBalancerState/">sh.getBalancerState()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.help/">sh.help()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.isBalancerRunning/">sh.isBalancerRunning()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.moveChunk/">sh.moveChunk()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.removeShardTag/">sh.removeShardTag()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.setBalancerState/">sh.setBalancerState()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.shardCollection/">sh.shardCollection()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.splitAt/">sh.splitAt()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.splitFind/">sh.splitFind()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.startBalancer/">sh.startBalancer()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.status/">sh.status()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.stopBalancer/">sh.stopBalancer()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.waitForBalancer/">sh.waitForBalancer()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.waitForBalancerOff/">sh.waitForBalancerOff()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.waitForDLock/">sh.waitForDLock()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/sh.waitForPingChange/">sh.waitForPingChange()</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/method/js-subprocess/">Subprocess Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/clearRawMongoProgramOutput/">clearRawMongoProgramOutput()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rawMongoProgramOutput/">rawMongoProgramOutput()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/run/">run()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/runMongoProgram/">runMongoProgram()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/runProgram/">runProgram()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/startMongoProgram/">startMongoProgram()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/stopMongoProgram/">stopMongoProgram()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/stopMongoProgramByPid/">stopMongoProgramByPid()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/stopMongod/">stopMongod()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/waitMongoProgramOnPort/">waitMongoProgramOnPort()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/waitProgram/">waitProgram()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/method/js-constructor/">Object Constructors and Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/Date/">Date()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/UUID/">UUID()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/ObjectId.getTimestamp/">ObjectId.getTimestamp()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/ObjectId.toString/">ObjectId.toString()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/ObjectId.valueOf/">ObjectId.valueOf()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/method/js-connection/">Connection Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/Mongo.getDB/">Mongo.getDB()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/Mongo.getReadPrefMode/">Mongo.getReadPrefMode()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/Mongo.getReadPrefTagSet/">Mongo.getReadPrefTagSet()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/Mongo.setReadPref/">Mongo.setReadPref()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/Mongo.setSlaveOk/">mongo.setSlaveOk()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/Mongo/">Mongo()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/connect/">connect()</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/method/js-native/">Native Methods</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cat/">cat()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/version/">version()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/cd/">cd()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/copyDbpath/">copyDbpath()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/resetDbpath/">resetDbpath()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/fuzzFile/">fuzzFile()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/getHostName/">getHostName()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/getMemInfo/">getMemInfo()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/hostname/">hostname()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/isWindows/">_isWindows()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/listFiles/">listFiles()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/load/">load()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/ls/">ls()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/md5sumFile/">md5sumFile()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/mkdir/">mkdir()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/pwd/">pwd()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/quit/">quit()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/rand/">rand()</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/removeFile/">removeFile()</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../reference/method/srand/">_srand()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/program/">MongoDB Package Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongod/"><tt class="docutils literal"><span class="pre">mongod</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongos/"><tt class="docutils literal"><span class="pre">mongos</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongo/"><tt class="docutils literal"><span class="pre">mongo</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongod.exe/"><tt class="docutils literal"><span class="pre">mongod.exe</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongos.exe/"><tt class="docutils literal"><span class="pre">mongos.exe</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongodump/"><tt class="docutils literal"><span class="pre">mongodump</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongorestore/"><tt class="docutils literal"><span class="pre">mongorestore</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/bsondump/"><tt class="docutils literal"><span class="pre">bsondump</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongooplog/"><tt class="docutils literal"><span class="pre">mongooplog</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongoimport/"><tt class="docutils literal"><span class="pre">mongoimport</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongoexport/"><tt class="docutils literal"><span class="pre">mongoexport</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongostat/"><tt class="docutils literal"><span class="pre">mongostat</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongotop/"><tt class="docutils literal"><span class="pre">mongotop</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongosniff/"><tt class="docutils literal"><span class="pre">mongosniff</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongoperf/"><tt class="docutils literal"><span class="pre">mongoperf</span></tt></a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../reference/program/mongofiles/"><tt class="docutils literal"><span class="pre">mongofiles</span></tt></a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/configuration-options/">Configuration File Options</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/parameters/"><tt class="docutils literal"><span class="pre">mongod</span></tt> Parameters</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/limits/">MongoDB Limits and Thresholds</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/connection-string/">Connection String URI Format</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../reference/glossary/">Glossary</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../release-notes/">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../release-notes/2.4/">Release Notes for MongoDB 2.4</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../release-notes/2.4-javascript/">JavaScript Changes in MongoDB 2.4</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../release-notes/2.4-upgrade/">Upgrade MongoDB to 2.4</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../release-notes/2.4-index-types/">Compatibility and Index Type Changes in MongoDB 2.4</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../release-notes/2.2/">Release Notes for MongoDB 2.2</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../release-notes/2.0/">Release Notes for MongoDB 2.0</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../release-notes/1.8/">Release Notes for MongoDB 1.8</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../release-notes/1.6/">Release Notes for MongoDB 1.6</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../release-notes/1.4/">Release Notes for MongoDB 1.4</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../release-notes/1.2/">Release Notes for MongoDB 1.2.x</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../release-notes/drivers-write-concern/">Default Write Concern Change</a><ul class="simple">
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+
+<div class="nav-footer">
+  <a href="../../about/">About</a> |
+  <a href="../../contents/">Contents</a> |
+  <a href="../../genindex/">Index</a>
+</div>
+    </div>
+  </div>
+    
+  </aside>
+  <div class="option-popup closed">
+    <div class="option-header">
+      <i class="fa fa-gear"></i>
+      <span>OPTIONS</span>
+      <i class="fa fa-angle-up pull-right"></i>
+    </div>
+    <div class="option-body">
+      <ul>
+        
+           <!-- version selector -->
+           <li>
+             <label>Version</label>
+             <select class="version-selector pull-right">
+               
+                  <option data-path="master" >
+                    2.6 (upcoming)
+                  </option>
+               
+                  <option data-path="manual" selected="selected">
+                    2.4 (current)
+                  </option>
+               
+                  <option data-path="v2.2" >
+                    2.2
+                  </option>
+               
+             </select>
+           </li>
+        
+           
+        
+           <!-- format selector -->
+           <li>
+             <label>Formats</label>
+             <ul class="formats-list">
+                   <li><a href="/manual/single/">HTML</span></a></li>
+               <li><a href="http://docs.mongodb.org/v2.4/MongoDB-manual.pdf" rel="nofollow">PDF</a></li>
+               <li><a href="http://docs.mongodb.org/v2.4/MongoDB-manual.epub" rel="nofollow">EPUB</a></li>
+             </ul>
+           </li>
+        
+        <!-- contribute -->
+        <li>
+          <label>Contribute</label>
+          <ul class="contribute-list">
+            <li><a class="jira-link" id="jirafeedback" href="https://jira.mongodb.org/secure/CreateIssueDetails!init.jspa?pid=10380&issuetype=4&priority=4&summary=Comment+on%3a+%22core/introduction%2Etxt%22" target="_blank" title="Report a problem with core/introduction.txt on Jira">Report a Problem</a></li>
+            <li><a class="edit-link" href="https://github.com/mongodb/docs/blob/v2.4/source/core/introduction.txt" target="_blank" title="Edit core/introduction.txt on GitHub">
+    
+      <span>Edit on Github</span>
+    
+  </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="content">
+    <div class="main-column pull-left">
+        <div class="document">
+            <div class="documentwrapper"><div class="bodywrapper">
+              <div class="body">
+                <a class="edit-link" href="https://github.com/mongodb/docs/blob/v2.4/source/core/introduction.txt" target="_blank" title="Edit core/introduction.txt on GitHub">
+    
+      <span class="icon-edit"></span>
+    
+  </a>
+                
+   <div class="bc">
+     
+      
+    
+  </div>
+                
+                  <div class="section" id="introduction-to-mongodb">
+<h1>Introduction to MongoDB<a class="headerlink" href="#introduction-to-mongodb" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to MongoDB. This document provides a brief introduction to MongoDB
+and some key concepts. See the <a class="reference internal" href="../../installation/"><em>installation guides</em></a> for
+information on downloading and installing MongoDB.</p>
+<div class="section" id="what-is-mongodb">
+<h2>What is MongoDB<a class="headerlink" href="#what-is-mongodb" title="Permalink to this headline">¶</a></h2>
+<p>MongoDB is an open-source document database that provides high
+performance, high availability, and automatic scaling.</p>
+<div class="section" id="document-database">
+<h3>Document Database<a class="headerlink" href="#document-database" title="Permalink to this headline">¶</a></h3>
+<p>A record in MongoDB is a document, which is a data structure composed
+of field and value pairs. MongoDB documents are similar to JSON
+objects. The values of fields may include other documents, arrays,
+and arrays of documents.</p>
+<div class="figure align-center" style="width: 600px">
+<img alt="A MongoDB document." src="../../_images/crud-annotated-document.png" />
+<p class="caption">A MongoDB document.</p>
+</div>
+<p>The advantages of using documents are:</p>
+<ul class="simple">
+<li>Documents (i.e. objects) correspond to native data types in
+many programming languages.</li>
+<li>Embedded documents and arrays reduce need for expensive joins.</li>
+<li>Dynamic schema supports fluent polymorphism.</li>
+</ul>
+</div>
+<div class="section" id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="high-performance">
+<h4>High Performance<a class="headerlink" href="#high-performance" title="Permalink to this headline">¶</a></h4>
+<p>MongoDB provides high performance data persistence. In particular,</p>
+<ul class="simple">
+<li>Support for embedded data models reduces I/O activity on database
+system.</li>
+<li>Indexes support faster queries and can include keys from embedded
+documents and arrays.</li>
+</ul>
+</div>
+<div class="section" id="high-availability">
+<h4>High Availability<a class="headerlink" href="#high-availability" title="Permalink to this headline">¶</a></h4>
+<p>To provide high availability, MongoDB&#8217;s replication facility, called
+replica sets, provide:</p>
+<ul class="simple">
+<li><em>automatic</em> failover.</li>
+<li>data redundancy.</li>
+</ul>
+<p>A <a class="reference internal" href="../replication-introduction/"><em>replica set</em></a> is a group of
+MongoDB servers that maintain the same data set, providing redundancy
+and increasing data availability.</p>
+</div>
+<div class="section" id="automatic-scaling">
+<h4>Automatic Scaling<a class="headerlink" href="#automatic-scaling" title="Permalink to this headline">¶</a></h4>
+<p>MongoDB provides horizontal scalability as part of its <em>core</em>
+functionality.</p>
+<ul class="simple">
+<li>Automatic <a class="reference internal" href="../sharding-introduction/"><em>sharding</em></a> distributes
+data across a cluster of machines.</li>
+<li>Replica sets can provide eventually-consistent reads for low-latency
+high throughput deployments.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+                
+    <div id="btnv">
+      <span class="btn-arrow-left">&larr; &nbsp;</span>
+      <a class="btn-prev-text" href="../../contents/" title="Previous Section: MongoDB Manual Contents"><span>MongoDB Manual Contents</span></a>
+      <a class="btn-next-text" href="../../installation/" title="Next Section: Install MongoDB"><span>Install MongoDB</span></a>
+      <span class="btn-arrow-right">&nbsp;&rarr;</span>
+    </div>
+                  <div class="footer">
+                    <div class="copyright">
+                      <p>Copyright &copy; 2011-2014, MongoDB, Inc. <a class="smalltext" href="http://www.mongodb.com">MongoDB, Inc</a>. Licensed under <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/ ">Creative Commons</a>. MongoDB, Mongo, and the leaf logo are registered trademarks of MongoDB, Inc.</p>
+                    </div>
+                  </div>
+              </div></div>
+            </div>
+        </div>
+    </div>
+    <div class="right-column">
+      <div class="wrapper">
+             <div class="toc">
+               <span class="toc-header">ON THIS PAGE</span>
+               <ul>
+<li><a class="reference internal" href="#">Introduction to MongoDB</a><ul>
+<li><a class="reference internal" href="#what-is-mongodb">What is MongoDB</a><ul>
+<li><a class="reference internal" href="#document-database">Document Database</a></li>
+<li><a class="reference internal" href="#key-features">Key Features</a><ul>
+<li><a class="reference internal" href="#high-performance">High Performance</a></li>
+<li><a class="reference internal" href="#high-availability">High Availability</a></li>
+<li><a class="reference internal" href="#automatic-scaling">Automatic Scaling</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+             </div><script type='text/javascript'>
+$(function() {
+   $(window).on('resize', resizeAd);
+   var id = setInterval(function(){
+     if($('iframe').contents().find('.img_ad').length){
+       resizeAd();
+       clearInterval(id)
+     }
+   }, 100);
+   function resizeAd(){
+     if($('body').innerWidth() < 993){
+        $('iframe').css({widht: '0px', height: '0px'});
+
+     }else if($('body').innerWidth() < 1200){
+       $('iframe').contents().find('.img_ad').css({width: '243px',
+                                                   height: '202px'});
+       $('iframe').css({width: '243px', height: '202px'});
+     }else{
+       $('iframe').contents().find('.img_ad').css({width: '293px',
+                                                   height: '244px'});
+       $('iframe').css({width: '293px', height: '244px'});
+     }
+   }
+ });
+</script>
+
+<!-- Docs -->
+<div id='div-gpt-ad-1389988495352-0'>
+  <script type='text/javascript'>
+   googletag.cmd.push(function() {
+     googletag.display('div-gpt-ad-1389988495352-0'); });
+  </script>
+</div>
+           <div class="social">
+             <a class="twitter-icon" href="https://twitter.com/mongodbinc"><div class="img"></div></a>
+             <a class="youtube-icon" href="http://www.youtube.com/user/MongoDB"><div class="img"></div></a>
+             <a class="facebook-icon" href="https://www.facebook.com/mongodb"><div class="img"></div></a>
+             <a class="gplus-icon" href="https://plus.google.com/u/1/101024085748034940765/posts?cfem=1"><div class="img"></div></a>
+           </div>
+        
+      </div>
+    </div>
+    <div class="clearfix"></div>
+  </div><script type="text/javascript">
+var _gaq = _gaq || [];
+var pluginUrl = (('https:' == document.location.protocol) ? 'https://ssl.' : 'http://www.') + 'google-analytics.com/plugins/ga/inpage_linkid.js';
+_gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+_gaq.push(['_setAccount', 'UA-7301842-8']);
+_gaq.push(['_setDomainName', 'docs.mongodb.org']);
+_gaq.push(['_trackPageview']);
+(function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+        })();
+</script>
+
+<script type="text/javascript">var _kiq = _kiq || [];</script>
+<script type="text/javascript">
+(function(){
+setTimeout(function(){ var d = document, f = d.getElementsByTagName('script')[0], s = d.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//s3.amazonaws.com/ki.js/49119/a7n.js'; f.parentNode.insertBefore(s, f); }, 1);
+})();
+</script>
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-7301842-14', 'mongodb.org');
+ga('send', 'pageview');
+</script>
+
+<script type="text/javascript">
+document.write(unescape("%3Cscript src='" + document.location.protocol + "//munchkin.marketo.net/munchkin.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script>try { mktoMunchkin("017-HGS-593"); } catch(e) {}</script><script type="text/javascript">
+jQuery.ajax({
+	 url: "https://jira.mongodb.org/s/en_UScn8g8x/782/6/1.2.5/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector-embededjs.js?collectorId=298ba4e7",
+	 type: "get",
+	 cache: true,
+	 dataType: "script"
+	});
+window.ATL_JQ_PAGE_PROPS =  {
+	"triggerFunction": function(showCollectorDialog) {
+		jQuery("#jirafeedback").click(function(e) {e.preventDefault();showCollectorDialog();});},
+		fieldValues: {component: 'mongodb-manual', summary: 'Comment on: "manual/core/introduction.txt"'},
+		environment: {'repo': 'docs','source': 'core/introduction'}
+		};
+</script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    var pagename = 'core/introduction';
+    if (pagename == 'index') {
+      pagename = '';
+    }
+    $("select.version-selector").on('change', function(e) {
+      var base = $(e.currentTarget).find('option:selected').data('path');
+      window.location.href = '/' + base + '/' + pagename + '/';
+    });
+
+    $("select.language-selector").on('change', function(e) {
+      var path = $(e.currentTarget).find('option:selected').data('path');
+      window.location.href = path;
+    });
+
+  });
+
+  // Bootstrap array of links that should trigger a full page reload
+  window.docsExcludedNav = ['/core/replica-set-members', '/core/replica-set-architectures', '/core/replica-set-high-availability', '/applications/replication', '/core/sharded-cluster-components', '/core/index-types', '/reference/security', '/reference/indexes', '/reference/replication', '/reference/sharding', '/release-notes/2.4'];
+  </script></body>
+</html>

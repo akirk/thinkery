@@ -22,13 +22,6 @@ class Thinkery_Frontend {
 	private $thinkery;
 
 	/**
-	 * Whether we are on the /thinkery page.
-	 *
-	 * @var boolean
-	 */
-	private $on_thinkery_frontend = false;
-
-	/**
 	 * Whether an tag is being displayed
 	 *
 	 * @var string|false
@@ -91,7 +84,7 @@ class Thinkery_Frontend {
 	 */
 	public function enqueue_scripts() {
 		if ( is_user_logged_in() ) {
-			if ( $this->is_thinkery_frontend() ) {
+			if ( Thinkery::on_frontend() ) {
 				wp_enqueue_script(
 					'thinkery',
 					plugins_url( 'thinkery.js', __FILE__ ),
@@ -130,7 +123,7 @@ class Thinkery_Frontend {
 	 * @return array The modified CSS classes.
 	 */
 	public function add_body_class( $classes ) {
-		if ( $this->on_thinkery_frontend ) {
+		if ( Thinkery::on_frontend() ) {
 			$classes[] = 'thinkery-page';
 		}
 
@@ -167,7 +160,7 @@ class Thinkery_Frontend {
 	 * @return string The new template to be loaded.
 	 */
 	public function template_override( $template ) {
-		if ( ! $this->is_thinkery_frontend() ) {
+		if ( ! Thinkery::on_frontend() ) {
 			return $template;
 		}
 
@@ -201,7 +194,7 @@ class Thinkery_Frontend {
 	 * @return string The modified title format for a private post title.
 	 */
 	public function private_title_format( $title_format ) {
-		if ( $this->is_thinkery_frontend() ) {
+		if ( Thinkery::on_frontend() ) {
 			return '%s';
 		}
 		return $title_format;
@@ -235,14 +228,13 @@ class Thinkery_Frontend {
 	 */
 	public function thinkery_posts_query( $query ) {
 		global $wp_query;
-		if ( $wp_query !== $query || ! $this->is_thinkery_frontend() ) {
+		if ( $wp_query !== $query || ! Thinkery::on_frontend() ) {
 			return $query;
 		}
 
 		if ( ! current_user_can( 'edit_posts' ) ) {
 			return $query;
 		}
-		$this->on_thinkery_frontend = true;
 
 		$page_id = get_query_var( 'thinkery_tag' );
 

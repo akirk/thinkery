@@ -1,0 +1,33 @@
+[
+{
+  "tags":["Robots","Virtual Robots","Joseph"],
+  "text":"<h1>Welcome to RoboMind.net<br>\n\t\t  \t<span style=\"font-size:smaller; font-style:italic; color: #abc;\">\n            a new introduction to programming<\/span><\/h1>\n            <p>RoboMind is a simple educational programming environment that will familiarize you with the basics of computer science by letting you program your own robot. In addition to an introduction to popular programming techniques, you will also gain insight into areas such as robotics and artificial intelligence. <\/p>\n            <p><a href=\"http:\/\/www.robomind.net\/en\/gfx\/robomind25Screenshot.jpg\" target=\"_blank\"><img src=\"http:\/\/www.robomind.net\/en\/gfx\/robomind25Screenshot-320.jpg\" alt=\"screenshot\" width=\"320\" height=\"240\" border=\"0\"><\/a><\/p>\n            <p>It is designed in such a way that you can start exploring and programming right away. A special programming language, ROBO, has been created that consists of a concise set of rules and is aimed at programming a robot. As a result there are a lot of opportunities to create programs on your own and experience the principles that lay at the heart of most other programming languages. <\/p>\n            <p> The entire RoboMind environment is completely free for both individual as well as educational and commercial use. There are no unpleasant surprises such as trial periods, restricted functionality or advertisements.<\/p>",
+  "liked":false,
+  "notebooks":["053a75f0-a638-452d-9aa9-f90cb19d18b9"],
+  "image":"attachments\/api-photo-063cdd35-6d8c-4e70-853c-2bb4c0d20c758720295822602949800.jpg",
+  "type":"Bookmark",
+  "url":"http:\/\/www.robomind.net\/en\/index.html",
+  "modified":"2013-11-20T19:03:11+0000",
+  "created":"2013-10-03T05:17:27+0000",
+  "complete":false,
+  "name":"RoboMind.net - Welcome to RoboMind.net, the new way to learn programming",
+  "attachments":[
+      {
+      "image":"attachments\/api-photo-063cdd35-6d8c-4e70-853c-2bb4c0d20c758720295822602949800.jpg",
+      "type":"Photo"
+      }],
+  "uuid":"05375534-6199-434d-a4e0-78ba426c0f56",
+  "public":false
+  },
+  {
+  "tags":[],
+  "created":"2013-09-23T07:44:31+0000",
+  "item count":75.0,
+  "liked":false,
+  "name":"Gift Ideas",
+  "image":null,
+  "uuid":"053a75f0-a638-452d-9aa9-f90cb19d18b9",
+  "public":false,
+  "type":"Notebook",
+  "modified":"2014-05-27T15:31:49+0000"
+  }]

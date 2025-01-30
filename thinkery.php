@@ -23,8 +23,9 @@ defined( 'ABSPATH' ) || exit;
 include __DIR__ . '/class-thinkery-admin.php';
 include __DIR__ . '/class-thinkery-frontend.php';
 include __DIR__ . '/class-thinkery-importer.php';
-include __DIR__ . '/class-thinkery-xml-parser.php';
+include __DIR__ . '/class-thinkery-rest.php';
 include __DIR__ . '/class-thinkery-things.php';
+include __DIR__ . '/class-thinkery-xml-parser.php';
 include __DIR__ . '/class-thinkery.php';
 
 add_action( 'plugins_loaded', array( 'Thinkery', 'init' ) );

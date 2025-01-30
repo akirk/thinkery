@@ -1,0 +1,56 @@
+<div id="extract"><h6 class="grey italic normal">Extracted Page: <a href="http://www.appbank.net/2011/03/26/iphone-application/236984.php" class="grey external">http://www.appbank.net/2011/03/26/iphone-application/236984.php</a></h6> Evernote の使い方: 「お気に入りの店」「得意先」などの『場所』も管理しよう。880 - iPhoneアプリのAppBank<div class="expandable"><div id="entrya" readability="107.51755661749">
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-01.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-01.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="480" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>仕事系アプリを使う人で知らない人はいない（はず）の <a href="http://click.linksynergy.com/fs-bin/stat?id=dtqxn7cT2As&amp;offerid=94348&amp;type=3&amp;subid=0&amp;tmpid=2192&amp;RD_PARM1=http%253A%252F%252Fitunes.apple.com%252Fjp%252Fapp%252Fevernote%252Fid281796108%253Fmt%253D8%2526uo%253D4%2526partnerId%253D30" target="itunes_store">Evernote</a> 。単なるメモツールと思われる方が多く、その魅力に気付かないまま使わなくなってしまう事も多いようです。</p>
+<p>そこで AppBank では Evernote の具体的な活用方法を何回かに渡ってご紹介します。</p>
+<p>今回は「Evernote でお気に入りの店や得意先も管理する！」と題しまして、店や得意先などの「場所」を Evernote でブックマークして、活用する方法をご紹介します。</p>
+
+
+<h3>PC 版 Evernote ですること</h3>
+<p>まずはその場所に関する情報を集めます。例えば「お気に入りの店」リストをつくるなら Google マップのプレイスページが便利です。<a href="http://maps.google.co.jp/maps" title="Google マップ - 地図検索" target="_blank">Google マップ</a>にアクセスして店を検索し、該当する店の情報を「詳細」をクリックして表示させます。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-02r.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-02r.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="640" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>リストをつくる上で店の営業時間や住所・電話番号は欠かせません。これらの情報が含まれるようにページ内の情報を選択し、<a href="http://www.appbank.net/2011/03/19/iphone-news/233431.php" title="Evernote: 再入門！RSSリーダーやInstapaperの代わりに使える！しかもあとから検索できる！！ - iPhoneアプリのAppBank" target="_blank">前回ご紹介した「ウェブページを Evernote にクリップする」方法</a>で Evernote に追加します。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-03r.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-03r.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="640" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>先ほど追加した情報を Evernote で表示させます。住所をコピーして…</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-04r.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-04r.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="640" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>住所を緯度と経度に変換するウェブサービス <a href="http://www.geocoding.jp/" title="Geocoding - 住所から緯度経度を検索" target="_blank">Geocoding</a> に入力します。緯度と経度をコピーしましょう。「35.455865」と「139.633103」です。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-05.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-05.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="640" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>Evernote に戻ります。「詳細情報」あるいは「表示」メニューの「ノート情報を表示」をクリックしてから「クリックして位置情報を設定…」をクリックしましょう。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-06r.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-06r.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="640" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>コピーした緯度・経度の数値を入力します。その際に若干数値が変換されてしまいますが、位置そのものはほとんど変化しないので問題ありません。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-07.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-07.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="386" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>ノートに位置情報が付加されました。郵便番号をクリックしてみましょう。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-08r.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-08r.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="640" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>Google マップで該当する位置にピンが刺さり、場所を確認することができます。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-09.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-09.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="640" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>こうしたノートはまとめて「お気に入りのお店」というノートブックに保存してしまいましょう。ノートブックは「ファイル」メニューから「新規ノートブック」をクリックすれば新しく作成できます。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-10.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-10.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="454" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>これで PC で済ませる作業は完了です。この一通りの作業を覚えてしまえばお気に入りの店を追加するのもそれほど苦ではなくなります。もしもっと良い方法をご存知の方がいらっしゃいましたら、ぜひご教授ください。</p>
+<p>ちなみに「得意先」の管理方法ですが、お気に入りの店をリストアップするのと方法はほぼ同じです。得意先の住所を調べ、それを緯度経度に変換し、ノートに付加します。あとは得意先の情報を思いつく限り、そのノートに書き連ねていくだけです。</p>
+<h3>iPhone 版 Evernote ですること</h3>
+<p>次は作成・保存したノートを実際に活用する方法です。<br />例えばお昼をどこで食べようか迷った時は…</p>
+<p>左：Evernote を開いて「ノートブック」をタップし、「お気に入りのお店」を選択。<br />右：ノートが表示されたら右上のボタンをタップします。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-11.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-11.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="320" class="alignnone size-full wp-image-236969" /></a> <a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-12r.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-12r.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="320" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p>左：写真から店を探せますが、これでは場所が分からないので右端のボタンをタップ。<br />右：店の場所を示すピンが刺さった地図と現在地が表示されます。近い店が探せますね。</p>
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-13.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-13.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="320" class="alignnone size-full wp-image-236969" /></a> <a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-14.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-14.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="320" class="alignnone size-full wp-image-236969" /></a></p>
+
+<p><a href="http://www.appbank.net/iphoneappimages/wp-content/uploads/2011/03/Evernote-LocationBookmark-15r.jpg" rel="nofollow"><img src="http://imgc.appbank.net/c/wp-content/uploads/2011/03/Evernote-LocationBookmark-15r.jpg" alt="Evernote: 「お気に入りの店」「得意先」などの『場所』も Evernote で管理しよう！" width="320" class="alignnone size-full wp-image-236969" /></a></p>
+<p>ピンをタップすればノートを参照できます。</p>
+<p>もし Google マップのプレイスページの情報をクリップしているのであれば、すぐに営業時間や住所・電話番号、公式ウェブサイトへのリンクもチェックできます。</p>
+<p>口コミのチェックも予約も簡単です。</p>
+<p>もし実際に店に行ったのであれば、このノートに料理の写真や感想などを追記しておくと後々の参考になりますね。</p>
+
+<p>住所を緯度・経度に変換するのが少し手間ですが、事前に情報をクリップして保存しておけば「あの店どこだっけ？」といった時にしっかりと役立ちます。得意先などの情報には担当者の好みなども合わせてメモしておくと営業活動もスムーズになること間違いなし！</p>
+<p>今回ご紹介したものは星の数ほどある（はずの） Evernote 活用術の1つに過ぎません。次回も Evernote の使い方をご紹介しますので、ご期待下さい！</p>
+
+</div></div></div>
